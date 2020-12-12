@@ -103,21 +103,18 @@
         <p>事情的起因是这样的</p>
 <p>我在NGA上看到个帖子，说是在不同的语言环境下的游戏文本</p>
 <blockquote>
-<img src="/.io//Ascii-Unicode-%E4%B8%8E-UTF-8/en.png" class title="This is an test image">
-
-<p><img src="/.io//jp.png" alt="jp"></p>
-<p><img src="/.io//zh.png" alt="zh"></p>
-<p>（分别是 英文，日文，中文）</p>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/en.png" alt="英文文本"></p>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/jp.png" alt="日文文本"></p>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/zh.png" alt="中文文本"></p>
 </blockquote>
 <p>对应的编码不一样，对应的分别是Ascii编码的英文<code>Longing</code>，UTF-8编码的日文的<code>あこがれ</code>和中文的<code>憧憬</code></p>
 <p>就很好奇，跟着楼主给的链接去看了一下 Unicode 和 UTF-8</p>
 <h2 id="Ascii-编码"><a href="#Ascii-编码" class="headerlink" title="Ascii 编码"></a>Ascii 编码</h2><p>这几乎已经是计算机的基础常识了，使用7bit编码的128个字符，在一个字节中最高位为0.最高位为1的编码留空</p>
 <p>于是许多国家就对最高位1的留白进行了编码，比如中文<code>GB2312</code>，但是每种语言又有自己的编码方式，相当混乱</p>
-<p>顺便，记事本中的</p>
 <h2 id="Unicode-字符集"><a href="#Unicode-字符集" class="headerlink" title="Unicode 字符集"></a>Unicode 字符集</h2><p>于是出现了 Unicode，是一个囊括了世界上所有符号甚至还有emoji的字符集。</p>
 <p>比如，汉字<code>严</code>的 Unicode 是十六进制数<code>4E25</code>，转换成二进制数足足有15位（<code>100111000100101</code>），也就是说，这个符号的表示至少需要2个字节。表示其他更大的符号，可能需要3个字节或者4个字节，甚至更多。</p>
 <p>如果同时要直接表示英文符号的话在3-4个字节中会留空2-3字节，存在空间浪费。</p>
-<h2 id="UTF-8-编码"><a href="#UTF-8-编码" class="headerlink" title="UTF-8 编码"></a>UTF-8 编码</h2><p>是一种针对 Unicode 字符集的编码方式，规则如下</p>
+<h2 id="UTF-8-编码"><a href="#UTF-8-编码" class="headerlink" title="UTF-8 编码"></a>UTF-8 编码</h2><p>UTF-8是一种针对 Unicode 字符集的编码方式，规则如下</p>
 <ul>
 <li>对于单字节的符号，字节的第一位设为<code>0</code>，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。</li>
 <li>对于<code>n</code>字节的符号（<code>n &gt; 1</code>），第一个字节的前<code>n</code>位都设为<code>1</code>，第<code>n + 1</code>位设为<code>0</code>，后面字节的前两位一律设为<code>10</code>。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。</li>
@@ -147,7 +144,7 @@
 </tr>
 </tbody></table>
 <p><code>严</code>的 Unicode 是<code>4E25</code>（<code>100111000100101</code>），根据上表，可以发现<code>4E25</code>处在第三行的范围内（<code>0000 0800 - 0000 FFFF</code>），因此<code>严</code>的 UTF-8 编码需要三个字节，即格式是<code>1110xxxx 10xxxxxx 10xxxxxx</code>。然后，从<code>严</code>的最后一个二进制位开始，依次从后向前填入格式中的<code>x</code>，多出的位补<code>0</code>。这样就得到了，<code>严</code>的 UTF-8 编码是<code>11100100 10111000 10100101</code>，转换成十六进制就是<code>E4B8A5</code>。</p>
-<h2 id="记事本中的编码方式"><a href="#记事本中的编码方式" class="headerlink" title="记事本中的编码方式"></a>记事本中的编码方式</h2><p><img src="/.io//notepad.png" alt="notepad"></p>
+<h2 id="记事本中的编码方式"><a href="#记事本中的编码方式" class="headerlink" title="记事本中的编码方式"></a>记事本中的编码方式</h2><p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/notepad.png" alt="notepad"></p>
 <ul>
 <li>ANSI，Ascii + GB2312（简体中文）或其它自定编码Big5(繁体中文)</li>
 <li>UTF-16 LE，小端 UTF-16</li>
@@ -155,11 +152,14 @@
 <li>UTF-8</li>
 <li>带有BOM的UTF-8，BOM（byte order mark），用来标记大端（<code>FEFF</code>）/小端（FFFE）。但是标准的UTF-8是不需要BOM的，这只是一种扩展形式。</li>
 </ul>
+<p><br><br><br></p>
+<p><strong>参考链接</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhyib.github.io/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/" data-id="ckilqopzr0001v1n92jre7r6a" data-title="Ascii Unicode 与 UTF-8" class="article-share-link">分享</a>
+      <a data-url="https://zhyib.github.io/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/" data-id="ckilu95hg0001yiov04x9193p" data-title="Ascii Unicode 与 UTF-8" class="article-share-link">分享</a>
       
       
       
@@ -205,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhyib.github.io/20201212/%E9%9B%B6%E5%8F%B7%E6%96%87%E6%A1%A3/" data-id="ckilqopzu0002v1n941yehof6" data-title="零号文档" class="article-share-link">分享</a>
+      <a data-url="https://zhyib.github.io/20201212/%E9%9B%B6%E5%8F%B7%E6%96%87%E6%A1%A3/" data-id="ckilu95ho0006yiovf0itgyzk" data-title="零号文档" class="article-share-link">分享</a>
       
       
       
