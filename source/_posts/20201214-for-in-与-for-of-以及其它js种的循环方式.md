@@ -27,7 +27,7 @@ for (let i in b) {console.log(i)}	// '-1'. '-2'
 for (let i in c) {console.log(i)}	// '0', '1', '2'
 ```
 
-
+<!-- more -->
 
 ## for ... of
 

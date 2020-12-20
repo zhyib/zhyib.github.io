@@ -23,7 +23,7 @@ tags:
 
 就很好奇，跟着楼主给的链接去看了一下 Unicode 和 UTF-8
 
-
+<!-- more -->
 
 ## Ascii 编码
 
