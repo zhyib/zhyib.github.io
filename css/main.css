@@ -2783,3 +2783,10 @@ mjx-container[display="true"] + br {
     padding: 10px 12px;
   }
 }
+body {
+  background-image: linear-gradient(#fff, rgba(255,255,255,0.2)), url("https://api.dujin.org/bing/1920.php");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
+}
