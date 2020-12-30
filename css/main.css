@@ -2784,9 +2784,32 @@ mjx-container[display="true"] + br {
   }
 }
 body {
-  background-image: linear-gradient(#fff, rgba(255,255,255,0.2)), url("https://api.dujin.org/bing/1920.php");
+  background-image: linear-gradient(rgba(255,255,255,0.5), #fff), url("https://api.dujin.org/bing/1920.php");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
+  line-height: 1.5;
+}
+h2 {
+  margin-block-start: 2em;
+}
+h3 {
+  margin-block-start: 2em;
+}
+h4 {
+  margin-block-start: 1.7em;
+}
+p {
+  margin-block-start: 0em;
+}
+img {
+  margin-block-start: 2.5em;
+  margin-block-end: 0em;
+}
+center {
+  margin-block-start: 0em;
+  margin-block-end: 2.5em;
+  color: #999;
+  font-size: 0.9em;
 }
