@@ -23,27 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta name="description" content="简单地了解了一下WebSocket，做一下总结 什么是 WebSocket一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS WS 的特点为什么使用WS。 HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。 这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 135 分发糖果">
-<meta property="og:url" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<meta property="og:title" content="WebSocket入门">
+<meta property="og:url" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta property="og:description" content="简单地了解了一下WebSocket，做一下总结 什么是 WebSocket一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS WS 的特点为什么使用WS。 HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。 这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png">
-<meta property="article:published_time" content="2020-12-24T09:02:06.000Z">
-<meta property="article:modified_time" content="2021-01-25T13:53:26.766Z">
+<meta property="og:image" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png">
+<meta property="article:published_time" content="2021-01-25T13:09:58.000Z">
+<meta property="article:modified_time" content="2021-01-25T13:53:26.770Z">
 <meta property="article:author" content="Y. Z.">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="贪心算法">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
+<meta name="twitter:image" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png">
 
 
-<link rel="canonical" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<link rel="canonical" href="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
 
 
 <script class="page-configurations">
@@ -55,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>LeetCode 135 分发糖果 | AkiraZ's blog</title>
+<title>WebSocket入门 | AkiraZ's blog</title>
   
 
 
@@ -186,7 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">复杂度分析</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-WebSocket"><span class="nav-number">1.</span> <span class="nav-text">什么是 WebSocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">WS 的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">WS 简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E4%B8%8E-HTTP-2-0"><span class="nav-number">4.</span> <span class="nav-text">WS 与 HTTP 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F12"><span class="nav-number">5.</span> <span class="nav-text">F12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -260,7 +256,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -273,7 +269,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode 135 分发糖果
+          WebSocket入门
         </h1>
 
         <div class="post-meta-container">
@@ -283,16 +279,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-24 17:02:06" itemprop="dateCreated datePublished" datetime="2020-12-24T17:02:06+08:00">2020-12-24</time>
+      <time title="创建时间：2021-01-25 21:09:58 / 修改时间：21:53:26" itemprop="dateCreated datePublished" datetime="2021-01-25T21:09:58+08:00">2021-01-25</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-25 21:53:26" itemprop="dateModified" datetime="2021-01-25T21:53:26+08:00">2021-01-25</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -300,10 +290,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
         </span>
     </span>
 
@@ -317,40 +303,67 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>记录刷每日过程中遇到的Hard题</p>
-<p><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<br/>
-
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><a href="https://leetcode-cn.com/problems/candy/solution/fen-fa-tang-guo-by-leetcode-solution-f01p/">分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>概括核心思路：</p>
-<ul>
-<li>递增序列使用从1开始递增</li>
-<li>递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1</li>
-<li>如果相等，就把后一个数作为递增序列开始，为1</li>
-</ul>
+        <p>简单地了解了一下WebSocket，做一下总结</p>
+<h2 id="什么是-WebSocket"><a href="#什么是-WebSocket" class="headerlink" title="什么是 WebSocket"></a>什么是 WebSocket</h2><p>一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS</p>
+<h2 id="WS-的特点"><a href="#WS-的特点" class="headerlink" title="WS 的特点"></a>WS 的特点</h2><p>为什么使用WS。</p>
+<p>HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。</p>
+<p>这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必将带来大量冗余流量，所以B站的直播弹幕协议使用的是WS。</p>
+<p>WS就相当于开启了一个长连接通道，客户端与服务器可以随时收发消息，是一种全双工模式。</p>
+<blockquote>
+<p>什么是单工、半双工、全工通信？</p>
+<p>信息只能单向传送为单工；<br>信息能双向传送但不能同时双向传送称为半双工；<br>信息能够同时双向传送则称为全双工。</p>
+</blockquote>
 <a id="more"></a>
 
-<p>递增从头开始递增<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png" alt="递增从头开始递增"></p>
-<p>包含了递减序列<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png" alt="包含了递减序列"></p>
-<p>如果序列更长，整体+1<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png" alt="如果序列更长，整体+1"></p>
-<p>对于整体+1的操作，只需要记录递减序列的长度，例如：</p>
+<h2 id="WS-简单使用"><a href="#WS-简单使用" class="headerlink" title="WS 简单使用"></a>WS 简单使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;wss://echo.websocket.org&#x27;</span>);</span><br><span class="line"></span><br><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Connection open ...&#x27;</span>);</span><br><span class="line">  ws.send(<span class="string">&#x27;Hello WebSockets!&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Received Message: &#x27;</span> + evt.data);</span><br><span class="line">  ws.close();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Connection closed.&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器可以直接运行，如果在node上执行，需要安装，之后<code>require</code>/<code>import</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ws</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>new WebSocket(url)</td>
+<td>WS构造函数，返回一个WS对象</td>
+</tr>
+<tr>
+<td>webSocket.onopen()</td>
+<td>WS连接成功后的回调</td>
+</tr>
+<tr>
+<td>webSocket.onclose()</td>
+<td>WS连接关闭后的回调</td>
+</tr>
+<tr>
+<td>webSocket.onerror()</td>
+<td>WS出错的回调</td>
+</tr>
+<tr>
+<td>webSocket.send(content)</td>
+<td>使用WS发送消息，可以是字符串或二进制对象</td>
+</tr>
+<tr>
+<td>webSocket.close()</td>
+<td>关闭WS</td>
+</tr>
+</tbody></table>
+<h2 id="WS-与-HTTP-2-0"><a href="#WS-与-HTTP-2-0" class="headerlink" title="WS 与 HTTP 2.0"></a>WS 与 HTTP 2.0</h2><p>HTTP/2 虽然也支持 Server Push，但是服务器只能主动将资源推送到客户端缓存！并不允许将数据推送到客户端里跑的 Web App 本身。服务器推送只能由浏览器处理，不会在应用程序代码中弹出服务器数据，这意味着应用程序没有 API 来获取这些事件的通知。</p>
 <ul>
-<li>1 -&gt; +1</li>
-<li>1-0  -&gt; 都抬高一格 -&gt; 2-1，+2</li>
-<li>2-1-0 -&gt; 都抬高一格 -&gt; 3-2-1，+3</li>
-<li>即每次都加序列的长度<code>1, 2, 3...</code></li>
+<li>为了接近实时地将数据推送给 Web App， HTTP/2 可以结合 SSE（Server-Sent Event）使用。</li>
+<li>SSE，服务端推送事件，是通过 HTTP 长连接进行信息推送的一个功能。它首先由浏览器向服务端建立一个 HTTP 长连接，然后服务端不断地通过这个长连接将消息推送给浏览器。</li>
 </ul>
-<p>特殊情况，如果递减序列抬得比递增序列的最大值还高，如上图，需要连带那个最大值一起抬高，即<code>原长度+1</code></p>
-<br/>
-
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">ratings</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> candy = <span class="function"><span class="keyword">function</span>(<span class="params">ratings</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> n = ratings.length;</span><br><span class="line">    <span class="keyword">let</span> val = <span class="number">1</span>;    <span class="comment">// 上一个分配</span></span><br><span class="line">    <span class="keyword">let</span> dec = <span class="number">0</span>;    <span class="comment">// 升序序列长度</span></span><br><span class="line">    <span class="keyword">let</span> last = val; <span class="comment">// 升序序列最后，用来判断是否需要一起抬高</span></span><br><span class="line">    <span class="keyword">let</span> ret = val;    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// ascend</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val++;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ratings[i] === ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// equal</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val = <span class="number">1</span>;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// descend</span></span><br><span class="line">            dec++;</span><br><span class="line">            dec = dec === last ? dec + <span class="number">1</span> : dec;</span><br><span class="line">            val = <span class="number">1</span>;        <span class="comment">// 当前位的值永远被抬到1</span></span><br><span class="line">            ret += dec;     <span class="comment">// 加序列长度</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</br>
-
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间：遍历一遍，O(n)</li>
-<li>空间：没有额外空间，O(1)</li>
-</ul>
+<h2 id="F12"><a href="#F12" class="headerlink" title="F12"></a>F12</h2><p><img src="/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png" alt="image-20210125215030670"></p>
+<p>在F12中查看WS，可以看到上行下行内容，图中例子是WSS，所以是经过加密的。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程 - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
+</blockquote>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -360,23 +373,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 贪心算法</a>
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/" rel="prev" title="for...in 与 for...of 以及其它js种的循环方式">
-                  <i class="fa fa-chevron-left"></i> for...in 与 for...of 以及其它js种的循环方式
+                <a href="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" rel="prev" title="LeetCode 135 分发糖果">
+                  <i class="fa fa-chevron-left"></i> LeetCode 135 分发糖果
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/20210125/WebSocket%E5%85%A5%E9%97%A8/" rel="next" title="WebSocket入门">
-                  WebSocket入门 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
