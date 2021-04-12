@@ -23,27 +23,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta name="description" content="注：该sudo就sudo  安装 Java安装 openjdk8 1apt-get install openjdk-8-jdk">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 135 分发糖果">
-<meta property="og:url" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<meta property="og:title" content="Minecraft 开服过程记录">
+<meta property="og:url" content="https://zhyib.github.io/20210412/Minecraft-%E5%BC%80%E6%9C%8D%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta property="og:description" content="注：该sudo就sudo  安装 Java安装 openjdk8 1apt-get install openjdk-8-jdk">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png">
-<meta property="article:published_time" content="2020-12-24T09:02:06.000Z">
+<meta property="article:published_time" content="2021-04-12T10:47:06.000Z">
 <meta property="article:modified_time" content="2021-04-12T10:57:07.279Z">
 <meta property="article:author" content="Y. Z.">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="贪心算法">
+<meta property="article:tag" content="MC">
+<meta property="article:tag" content="服务器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
 
 
-<link rel="canonical" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<link rel="canonical" href="https://zhyib.github.io/20210412/Minecraft-%E5%BC%80%E6%9C%8D%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/">
 
 
 <script class="page-configurations">
@@ -55,7 +50,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>LeetCode 135 分发糖果 | AkiraZ's blog</title>
+<title>Minecraft 开服过程记录 | AkiraZ's blog</title>
   
 
 
@@ -186,7 +181,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">复杂度分析</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Java"><span class="nav-number">1.</span> <span class="nav-text">安装 Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A0%B8%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">下载服务端核心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scp-%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">scp 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pscp-%E6%8C%87%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">pscp 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-sh%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">3.4.</span> <span class="nav-text">修改.sh文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">3.5.</span> <span class="nav-text">防火墙</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -260,7 +255,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210412/Minecraft-%E5%BC%80%E6%9C%8D%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -273,7 +268,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode 135 分发糖果
+          Minecraft 开服过程记录
         </h1>
 
         <div class="post-meta-container">
@@ -283,16 +278,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-24 17:02:06" itemprop="dateCreated datePublished" datetime="2020-12-24T17:02:06+08:00">2020-12-24</time>
+      <time title="创建时间：2021-04-12 18:47:06 / 修改时间：18:57:07" itemprop="dateCreated datePublished" datetime="2021-04-12T18:47:06+08:00">2021-04-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-12 18:57:07" itemprop="dateModified" datetime="2021-04-12T18:57:07+08:00">2021-04-12</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -303,7 +292,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%91%B8%E9%B1%BC%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">摸鱼技术</span></a>
         </span>
     </span>
 
@@ -317,40 +306,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>记录刷每日过程中遇到的Hard题</p>
-<p><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<br/>
+        <blockquote>
+<p>注：该sudo就sudo</p>
+</blockquote>
+<h2 id="安装-Java"><a href="#安装-Java" class="headerlink" title="安装 Java"></a>安装 Java</h2><p>安装 openjdk8</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
 
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><a href="https://leetcode-cn.com/problems/candy/solution/fen-fa-tang-guo-by-leetcode-solution-f01p/">分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>概括核心思路：</p>
-<ul>
-<li>递增序列使用从1开始递增</li>
-<li>递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1</li>
-<li>如果相等，就把后一个数作为递增序列开始，为1</li>
-</ul>
 <a id="more"></a>
 
-<p>递增从头开始递增<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png" alt="递增从头开始递增"></p>
-<p>包含了递减序列<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png" alt="包含了递减序列"></p>
-<p>如果序列更长，整体+1<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png" alt="如果序列更长，整体+1"></p>
-<p>对于整体+1的操作，只需要记录递减序列的长度，例如：</p>
-<ul>
-<li>1 -&gt; +1</li>
-<li>1-0  -&gt; 都抬高一格 -&gt; 2-1，+2</li>
-<li>2-1-0 -&gt; 都抬高一格 -&gt; 3-2-1，+3</li>
-<li>即每次都加序列的长度<code>1, 2, 3...</code></li>
-</ul>
-<p>特殊情况，如果递减序列抬得比递增序列的最大值还高，如上图，需要连带那个最大值一起抬高，即<code>原长度+1</code></p>
-<br/>
+<h2 id="下载服务端核心"><a href="#下载服务端核心" class="headerlink" title="下载服务端核心"></a>下载服务端核心</h2><p>直接调用轮子，因为需要安装mod，使用了这个MCBBS上推荐的服务端</p>
+<p><a href="https://github.com/Luohuayu/CatServer/releases">Releases · Luohuayu/CatServer (github.com)</a></p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xmx1000M -Xms800M -XX:+AggressiveOpts -jar jar_file</span><br></pre></td></tr></table></figure>
 
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">ratings</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> candy = <span class="function"><span class="keyword">function</span>(<span class="params">ratings</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> n = ratings.length;</span><br><span class="line">    <span class="keyword">let</span> val = <span class="number">1</span>;    <span class="comment">// 上一个分配</span></span><br><span class="line">    <span class="keyword">let</span> dec = <span class="number">0</span>;    <span class="comment">// 升序序列长度</span></span><br><span class="line">    <span class="keyword">let</span> last = val; <span class="comment">// 升序序列最后，用来判断是否需要一起抬高</span></span><br><span class="line">    <span class="keyword">let</span> ret = val;    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// ascend</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val++;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ratings[i] === ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// equal</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val = <span class="number">1</span>;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// descend</span></span><br><span class="line">            dec++;</span><br><span class="line">            dec = dec === last ? dec + <span class="number">1</span> : dec;</span><br><span class="line">            val = <span class="number">1</span>;        <span class="comment">// 当前位的值永远被抬到1</span></span><br><span class="line">            ret += dec;     <span class="comment">// 加序列长度</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Set max and min ram size for jvm.</p>
+<h3 id="scp-指令"><a href="#scp-指令" class="headerlink" title="scp 指令"></a>scp 指令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp local_file [remote_username@]remote_ip:remote_folder [-r]</span><br></pre></td></tr></table></figure>
 
-</br>
 
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间：遍历一遍，O(n)</li>
-<li>空间：没有额外空间，O(1)</li>
-</ul>
+
+<h3 id="pscp-指令"><a href="#pscp-指令" class="headerlink" title="pscp 指令"></a>pscp 指令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pscp [remote_username@]remote_ip:remote_folder local_file [-r]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="修改-sh文件权限"><a href="#修改-sh文件权限" class="headerlink" title="修改.sh文件权限"></a>修改.sh文件权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 fiel_name</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p><a href="https://www.jianshu.com/p/dc49ed9fbfcf">Linux防火墙开放端口 - 简书 (jianshu.com)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld    ##查看火墙状态</span><br><span class="line">systemctl start firewalld     ##开启火墙服务</span><br><span class="line">systemctl stop firewalld      ##关闭火墙服务</span><br><span class="line"></span><br><span class="line">firewall-cmd --permanent --zone&#x3D;trusted --add-port&#x3D;25565&#x2F;tcp</span><br><span class="line">firewall-cmd --permanent --zone&#x3D;trusted --add-port&#x3D;25565&#x2F;udp</span><br><span class="line"></span><br><span class="line"># 25565 is the default port for minecraft server.</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用<code>trusted</code>而不是<code>public</code></strong></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -360,23 +344,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 贪心算法</a>
+              <a href="/tags/MC/" rel="tag"><i class="fa fa-tag"></i> MC</a>
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 服务器</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/" rel="prev" title="for...in 与 for...of 以及其它js种的循环方式">
-                  <i class="fa fa-chevron-left"></i> for...in 与 for...of 以及其它js种的循环方式
+                <a href="/20210322/LeetCode-1803-%E7%BB%9F%E8%AE%A1%E5%BC%82%E6%88%96%E5%80%BC%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E6%95%B0%E5%AF%B9%E6%9C%89%E5%A4%9A%E5%B0%91/" rel="prev" title="LeetCode 1803 统计异或值在范围内的数对有多少">
+                  <i class="fa fa-chevron-left"></i> LeetCode 1803 统计异或值在范围内的数对有多少
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/20210125/WebSocket%E5%85%A5%E9%97%A8/" rel="next" title="WebSocket入门">
-                  WebSocket入门 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
