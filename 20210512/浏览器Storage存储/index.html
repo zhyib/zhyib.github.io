@@ -23,27 +23,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta name="description" content="大概看了一下localStorage和sessionStorage的特性和基本操作 概述localStorage 属性允许你访问一个Document 的 Storage；存储的数据将保存在浏览器会话中。 localStorage 类似sessionStorage，但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束，当页面被关闭时，存储在 sessionStorag">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 135 分发糖果">
-<meta property="og:url" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<meta property="og:title" content="浏览器Storage存储">
+<meta property="og:url" content="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="记录刷每日过程中遇到的Hard题 135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)   算法分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com) 概括核心思路：  递增序列使用从1开始递增 递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1 如果相等，就把后一个数作为递增序列开始，为1">
+<meta property="og:description" content="大概看了一下localStorage和sessionStorage的特性和基本操作 概述localStorage 属性允许你访问一个Document 的 Storage；存储的数据将保存在浏览器会话中。 localStorage 类似sessionStorage，但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束，当页面被关闭时，存储在 sessionStorag">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png">
-<meta property="og:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png">
-<meta property="article:published_time" content="2020-12-24T09:02:06.000Z">
-<meta property="article:modified_time" content="2021-05-12T01:18:40.655Z">
+<meta property="article:published_time" content="2021-05-12T01:12:11.000Z">
+<meta property="article:modified_time" content="2021-05-12T01:18:40.659Z">
 <meta property="article:author" content="Y. Z.">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="贪心算法">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png">
 
 
-<link rel="canonical" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+<link rel="canonical" href="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
 
 
 <script class="page-configurations">
@@ -55,7 +50,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>LeetCode 135 分发糖果 | AkiraZ's blog</title>
+<title>浏览器Storage存储 | AkiraZ's blog</title>
   
 
 
@@ -186,7 +181,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">复杂度分析</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -260,7 +255,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -273,7 +268,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode 135 分发糖果
+          浏览器Storage存储
         </h1>
 
         <div class="post-meta-container">
@@ -283,16 +278,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-24 17:02:06" itemprop="dateCreated datePublished" datetime="2020-12-24T17:02:06+08:00">2020-12-24</time>
+      <time title="创建时间：2021-05-12 09:12:11 / 修改时间：09:18:40" itemprop="dateCreated datePublished" datetime="2021-05-12T09:12:11+08:00">2021-05-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-12 09:18:40" itemprop="dateModified" datetime="2021-05-12T09:18:40+08:00">2021-05-12</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -303,7 +292,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
         </span>
     </span>
 
@@ -317,40 +306,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>记录刷每日过程中遇到的Hard题</p>
-<p><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<br/>
-
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><a href="https://leetcode-cn.com/problems/candy/solution/fen-fa-tang-guo-by-leetcode-solution-f01p/">分发糖果 - 分发糖果 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>概括核心思路：</p>
-<ul>
-<li>递增序列使用从1开始递增</li>
-<li>递减序列从前一个值开始递减，减到最后不够了就整体递减序列+1</li>
-<li>如果相等，就把后一个数作为递增序列开始，为1</li>
-</ul>
+        <p>大概看了一下<code>localStorage</code>和<code>sessionStorage</code>的特性和基本操作</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>localStorage</code> 属性允许你访问一个<code>Document </code>的 <code>Storage</code>；存储的数据将保存在浏览器会话中。</p>
+<p><code>localStorage</code> 类似<code>sessionStorage</code>，但其区别在于：存储在 <code>localStorage</code> 的数据可以<strong>长期保留</strong>；而当页面会话结束，当页面被关闭时，存储在 <code>sessionStorage</code> 的数据会被清除 。</p>
 <a id="more"></a>
 
-<p>递增从头开始递增<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/1.png" alt="递增从头开始递增"></p>
-<p>包含了递减序列<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/2.png" alt="包含了递减序列"></p>
-<p>如果序列更长，整体+1<br><img src="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/3.png" alt="如果序列更长，整体+1"></p>
-<p>对于整体+1的操作，只需要记录递减序列的长度，例如：</p>
 <ul>
-<li>1 -&gt; +1</li>
-<li>1-0  -&gt; 都抬高一格 -&gt; 2-1，+2</li>
-<li>2-1-0 -&gt; 都抬高一格 -&gt; 3-2-1，+3</li>
-<li>即每次都加序列的长度<code>1, 2, 3...</code></li>
+<li>页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。</li>
+<li><strong>在新标签或窗口打开一个页面时会复制顶级浏览会话的session作为新会话的session，</strong>这点和 session cookies 的运行方式不同。</li>
+<li>打开多个相同的URL的Tabs页面，会创建各自的<code>sessionStorage</code>。</li>
+<li>关闭对应浏览器窗口（Window）/ tab，会清除对应的<code>sessionStorage</code>。 </li>
 </ul>
-<p>特殊情况，如果递减序列抬得比递增序列的最大值还高，如上图，需要连带那个最大值一起抬高，即<code>原长度+1</code></p>
-<br/>
+<blockquote>
+<p>存储在<code>sessionStorage</code>或<code>localStorage</code>中的数据<strong>特定于页面的协议</strong></p>
+<p>也就是说<code>http://example.com</code> 与 <code>https://example.com</code>的<code>sessionStorage</code>相互隔离。</p>
+<p>被存储的键值对总是以UTF-16 DOMString 的格式所存储，其使用两个字节来表示一个字符。对于对象、整数key值会自动转换成字符串形式。</p>
+</blockquote>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">localStorage</span>: <span class="built_in">object</span> = <span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="keyword">const</span> sessionStorage: <span class="built_in">object</span> = <span class="built_in">window</span>.sessionStorage;</span><br><span class="line"></span><br><span class="line"><span class="comment">// localStorage 与 sessionStorage 操作相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// get key name by index</span></span><br><span class="line"><span class="built_in">localStorage</span>.key(index: <span class="built_in">number</span>): <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// get key value by key name</span></span><br><span class="line"><span class="built_in">localStorage</span>.getItem(key: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// set key-value pair</span></span><br><span class="line"><span class="built_in">localStorage</span>.setItem(key: <span class="built_in">string</span>, <span class="attr">value</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//delete key-value</span></span><br><span class="line"><span class="built_in">localStorage</span>.removeItem(key: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clear</span></span><br><span class="line"><span class="built_in">localStorage</span>.clear(): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// use JSON</span></span><br><span class="line">value = <span class="built_in">JSON</span>.stringfy(obj: <span class="built_in">object</span>);</span><br><span class="line">obj = <span class="built_in">JSON</span>.parse(str: <span class="built_in">string</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">ratings</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> candy = <span class="function"><span class="keyword">function</span>(<span class="params">ratings</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> n = ratings.length;</span><br><span class="line">    <span class="keyword">let</span> val = <span class="number">1</span>;    <span class="comment">// 上一个分配</span></span><br><span class="line">    <span class="keyword">let</span> dec = <span class="number">0</span>;    <span class="comment">// 升序序列长度</span></span><br><span class="line">    <span class="keyword">let</span> last = val; <span class="comment">// 升序序列最后，用来判断是否需要一起抬高</span></span><br><span class="line">    <span class="keyword">let</span> ret = val;    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// ascend</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val++;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ratings[i] === ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="comment">// equal</span></span><br><span class="line">            dec = <span class="number">0</span>;</span><br><span class="line">            val = <span class="number">1</span>;</span><br><span class="line">            last = val;</span><br><span class="line">            ret += val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// descend</span></span><br><span class="line">            dec++;</span><br><span class="line">            dec = dec === last ? dec + <span class="number">1</span> : dec;</span><br><span class="line">            val = <span class="number">1</span>;        <span class="comment">// 当前位的值永远被抬到1</span></span><br><span class="line">            ret += dec;     <span class="comment">// 加序列长度</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</br>
 
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间：遍历一遍，O(n)</li>
-<li>空间：没有额外空间，O(1)</li>
-</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage">Window.localStorage - Web API 接口参考 | MDN (mozilla.org)</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage">Window.sessionStorage - Web API 接口参考 | MDN (mozilla.org)</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -360,23 +336,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 贪心算法</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/" rel="prev" title="for...in 与 for...of 以及其它js种的循环方式">
-                  <i class="fa fa-chevron-left"></i> for...in 与 for...of 以及其它js种的循环方式
+                <a href="/20210511/nvm-node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" rel="prev" title="nvm-node版本管理器">
+                  <i class="fa fa-chevron-left"></i> nvm-node版本管理器
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/20210125/WebSocket%E5%85%A5%E9%97%A8/" rel="next" title="WebSocket入门">
-                  WebSocket入门 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
