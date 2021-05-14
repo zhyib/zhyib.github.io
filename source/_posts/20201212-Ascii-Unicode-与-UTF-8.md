@@ -3,9 +3,9 @@ title: Ascii Unicode 与 UTF-8
 date: 2020-12-12 17:25:04
 categories:
 - 技术
-- 技术杂谈
+- 杂谈
 tags:
-- 技术杂谈
+- 杂谈
 ---
 
 事情的起因是这样的

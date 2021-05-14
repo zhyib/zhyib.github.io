@@ -3,8 +3,10 @@ title: WebSocket入门
 date: 2021-01-25 21:09:58
 categories:
 - 技术
+- 前端
 tags:
 - JavaScript
+- 前端
 ---
 
 简单地了解了一下WebSocket，做一下总结

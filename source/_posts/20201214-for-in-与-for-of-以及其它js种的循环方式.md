@@ -1,5 +1,5 @@
 ---
-title: for...in 与 for...of 以及其它js种的循环方式
+title: for...in 与 for...of 以及其它js中的循环方式
 date: 2020-12-14 20:50:06
 categories:
 - 技术
