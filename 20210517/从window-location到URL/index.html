@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="window.locationlocation &#x3D;&#x3D;&#x3D; window.location，记录的是浏览器URL的相关信息。 随手取了三个window.location，最后结合 RFC 3986: Uniform Resource Identifier (URI): Generic Syntax @ ietf.org来分析一下URL结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从window.location到URL">
+<meta property="og:url" content="https://zhyib.github.io/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/">
+<meta property="og:site_name" content="AkiraZ&#39;s blog">
+<meta property="og:description" content="window.locationlocation &#x3D;&#x3D;&#x3D; window.location，记录的是浏览器URL的相关信息。 随手取了三个window.location，最后结合 RFC 3986: Uniform Resource Identifier (URI): Generic Syntax @ ietf.org来分析一下URL结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-17T11:39:08.000Z">
+<meta property="article:modified_time" content="2021-05-17T11:45:00.509Z">
+<meta property="article:author" content="Y. Z.">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhyib.github.io/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>从window.location到URL | AkiraZ's blog</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">AkiraZ's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">愿键盘的余温传递到更远的将来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#window-location"><span class="nav-number">1.</span> <span class="nav-text">window.location</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">URL结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL%E7%9A%84%E5%85%A8%E9%83%A8%E5%AE%9A%E4%B9%89"><span class="nav-number">3.</span> <span class="nav-text">URL的全部定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI-URL-URN"><span class="nav-number">4.</span> <span class="nav-text">URI URL URN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFURN"><span class="nav-number">4.1.</span> <span class="nav-text">什么是URN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URN%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">URN的格式</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Y. Z.</p>
+  <div class="site-description" itemprop="description">ACG - A Coding Gamer</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhyib" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhyib" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从window.location到URL
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-17 19:39:08 / 修改时间：19:45:00" itemprop="dateCreated datePublished" datetime="2021-05-17T19:39:08+08:00">2021-05-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h2><p>location === window.location，记录的是浏览器URL的相关信息。</p>
+<p>随手取了三个<code>window.location</code>，最后结合 <a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC 3986: Uniform Resource Identifier (URI): Generic Syntax @ ietf.org</a>来分析一下URL结构</p>
+<a id="more"></a>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;ancestorOrigins&quot;</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">&quot;href&quot;</span>: <span class="string">&quot;https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;origin&quot;</span>: <span class="string">&quot;https://developers.weixin.qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;https:&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;host&quot;</span>: <span class="string">&quot;developers.weixin.qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hostname&quot;</span>: <span class="string">&quot;developers.weixin.qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;pathname&quot;</span>: <span class="string">&quot;/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;search&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hash&quot;</span>: <span class="string">&quot;#1&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;ancestorOrigins&quot;</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">&quot;href&quot;</span>: <span class="string">&quot;https://cn.bing.com/search?q=location+search+%E5%8F%82%E6%95%B0&amp;cvid=4f3c33331f6149e69d608f5e992a7ebe&amp;aqs=edge..69i57.6173j0j1&amp;pglt=163&amp;FORM=ANNTA1&amp;PC=U531&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;origin&quot;</span>: <span class="string">&quot;https://cn.bing.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;https:&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;host&quot;</span>: <span class="string">&quot;cn.bing.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hostname&quot;</span>: <span class="string">&quot;cn.bing.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;pathname&quot;</span>: <span class="string">&quot;/search&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;search&quot;</span>: <span class="string">&quot;?q=location+search+%E5%8F%82%E.......&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hash&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;ancestorOrigins&quot;</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">&quot;href&quot;</span>: <span class="string">&quot;http://localhost:4000/&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;origin&quot;</span>: <span class="string">&quot;http://localhost:4000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;http:&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;host&quot;</span>: <span class="string">&quot;localhost:4000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hostname&quot;</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="string">&quot;4000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;pathname&quot;</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;search&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hash&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="URL结构"><a href="#URL结构" class="headerlink" title="URL结构"></a>URL结构</h2><p>现在通常说的URL实际上是URI的一种，两者区别后面再说</p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc3986#section-3">Syntax Components</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  foo:&#x2F;&#x2F;example.com:8042&#x2F;over&#x2F;there?name&#x3D;ferret#nose</span><br><span class="line">  \_&#x2F;   \______________&#x2F;\_________&#x2F; \_________&#x2F; \__&#x2F;</span><br><span class="line">   |           |            |            |        |</span><br><span class="line">scheme     authority       path        query   fragment</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; location 中 URL 结构，全部由 RFC 3986 定义</span><br><span class="line">href					&#x2F;&#x2F; 完整的连接，Hypertext Reference</span><br><span class="line"> |-origin				&#x2F;&#x2F; 源，包括以下三项</span><br><span class="line"> |  |-protocol			&#x2F;&#x2F; scheme，相当于协议，如 http https</span><br><span class="line"> |  \-host				&#x2F;&#x2F; authority,相当于主机，包括主机名和端口</span><br><span class="line"> |     |-hostname		&#x2F;&#x2F; 主机名，可以是主机ip或字母组成的地址</span><br><span class="line"> |     \-port			&#x2F;&#x2F; 端口，没有就留空</span><br><span class="line"> |-pathname				&#x2F;&#x2F; path，路径名，相对于前半段地址的定位路径</span><br><span class="line"> |-search				&#x2F;&#x2F; query参数，【从第一个?开始到#为止】</span><br><span class="line"> \-hash					&#x2F;&#x2F; hash</span><br></pre></td></tr></table></figure>
+
+<p>当初面试的时候就被问到过，说怎么取当前页面URL，怎么取当前页面的查询参数，现在想来真是简单，只要使用<code>windows.location.xxx || location.xxx</code>即可得到，适当时需要一点字符串处理。</p>
+<h2 id="URL的全部定义"><a href="#URL的全部定义" class="headerlink" title="URL的全部定义"></a>URL的全部定义</h2><p>关于authority还有一个完整的定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">authority &#x3D; [ userinfo &quot;@&quot; ] host [ &quot;:&quot; port ]</span><br></pre></td></tr></table></figure>
+
+<p>也就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; location 中 URL 结构，全部由 RFC 3986 定义</span><br><span class="line">href                &#x2F;&#x2F; 完整的连接，Hypertext Reference</span><br><span class="line"> |-origin           &#x2F;&#x2F; 源，包括以下三项</span><br><span class="line"> |  |-userinfo      &#x2F;&#x2F; userinfo</span><br><span class="line"> |  |-protocol      &#x2F;&#x2F; scheme，相当于协议，如 http https</span><br><span class="line"> |  \-host          &#x2F;&#x2F; authority,相当于主机，包括主机名和端口</span><br><span class="line"> |     |-hostname   &#x2F;&#x2F; 主机名，可以是主机ip或字母组成的地址</span><br><span class="line"> |     \-port       &#x2F;&#x2F; 端口，没有就留空</span><br><span class="line"> |-pathname         &#x2F;&#x2F; path，路径名，相对于前半段地址的定位路径</span><br><span class="line"> |-search           &#x2F;&#x2F; query参数，【从第一个?开始到#为止】</span><br><span class="line"> \-hash             &#x2F;&#x2F; hash</span><br></pre></td></tr></table></figure>
+
+<p>在这种模式下，也就是说，常见邮箱地址<code>example@mail.com</code>也是一个authority。</p>
+<p>其实广义上的URL还包括更多东西，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.baidu.com&#x2F;                              &#x2F;&#x2F; https 地址</span><br><span class="line">ftp:&#x2F;&#x2F;ftp.is.co.za&#x2F;rfc&#x2F;rfc1808.txt                  &#x2F;&#x2F; ftp 地址</span><br><span class="line">http:&#x2F;&#x2F;www.ietf.org&#x2F;rfc&#x2F;rfc2396.txt</span><br><span class="line">ldap:&#x2F;&#x2F;[2001:db8::7]&#x2F;c&#x3D;GB?objectClass?one           &#x2F;&#x2F; IPv6 地址</span><br><span class="line">mailto:John.Doe@example.com                         &#x2F;&#x2F; mailto协议，邮箱</span><br><span class="line">news:comp.infosystems.www.servers.unix              &#x2F;&#x2F; 迷之协议</span><br><span class="line">tel:+1-816-555-1212                                 &#x2F;&#x2F; 电话</span><br><span class="line">telnet:&#x2F;&#x2F;192.0.2.16:80&#x2F;                             &#x2F;&#x2F; telnet 连接</span><br><span class="line">ssh:&#x2F;&#x2F;git@github.com:zhyib&#x2F;zhyib.github.io.git      &#x2F;&#x2F; ssh 勉强可以算？不确定</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="URI-URL-URN"><a href="#URI-URL-URN" class="headerlink" title="URI URL URN"></a>URI URL URN</h2><p>Uniform Resource Identifier, URI，统一资源定位符</p>
+<p>Uniform Resource Locators, URL，统一资源定位器</p>
+<p>Uniform Resource Names, URN，统一资源名称</p>
+<h3 id="什么是URN"><a href="#什么是URN" class="headerlink" title="什么是URN"></a>什么是URN</h3><p>URI包括URL和URN，前者是通过地址定位资源，后者是通过名称定位资源。URN本被期待成为一种定位方式，与资源地址无关的一种方式。甚至当时设计中还有URC，character，特征来定位，后来被RFC替代。现在URN已经很少使用了，使用的几乎都是URL。</p>
+<h3 id="URN的格式"><a href="#URN的格式" class="headerlink" title="URN的格式"></a>URN的格式</h3><p>来自<a href="https://datatracker.ietf.org/doc/html/rfc2141">RFC 2141 @ ietf.org</a>，用正则来表示就是</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^urn:[A-Za-z\d][A-Za-z\d\-]&#123;<span class="number">1</span>,<span class="number">31</span>&#125;:d]:[A-Za-z\d\符号]+$/</span><br><span class="line"><span class="comment">// &#x27;符号&#x27;包括 &quot;(&quot; | &quot;)&quot; | &quot;+&quot; | &quot;,&quot; | &quot;-&quot; | &quot;.&quot; | &quot;:&quot; | &quot;=&quot; | &quot;@&quot; | &quot;;&quot; | &quot;$&quot; | &quot;_&quot; | &quot;!&quot; | &quot;*&quot; | &quot;&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>前半段<code>[A-Za-z\d][A-Za-z\d\-]&#123;1,31&#125;:d]</code>，Namespace Identifier(NID)，命名空间标识符</p>
+<p>后半段<code>[A-Za-z\d\符号]+</code>，Namespace Specific String(NSS)，命名空间特定字符串，其中符号可以转为“%编码”</p>
+<p>很少见，除了这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 来自百度百科，改过hash</span><br><span class="line">magnet:?xt&#x3D;urn:btih:4D9FA761D69964BA05F23B3B0C9C1F968EA6C47D0&amp;xt&#x3D;urn:ed2k:7655dbacff9395e579c4c9cb49cbec0e&amp;dn&#x3D;bbb_sunflower_2160p_30fps_stereo_abl.mp4&amp;tr&#x3D;udp%3a%2f%2ftracker.openbittorrent.com%3a80%2fannounce&amp;tr&#x3D;udp%3a%2f%2ftracker.publicbt.com%3a80%2fannounce&amp;ws&#x3D;http%3a%2f%2fdistribution.bbb3d.renderfarming.net%2fvideo%2fmp4%2fbbb_sunflower_2160p_30fps_stereo_abl.mp4</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>xt</code>之后就是URN，<code>btih</code>为NID，后面的NSS。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag"><i class="fa fa-tag"></i> 网络协议</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/20210514/ESLint%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="prev" title="ESLint安装与配置">
+                  <i class="fa fa-chevron-left"></i> ESLint安装与配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Y. Z.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+</body>
+</html>
