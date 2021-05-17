@@ -107,3 +107,18 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+sequence:
+  # webfont:     # optional, the source url of webfontloader.js
+  # snap:        # optional, the source url of snap.svg.js
+  # underscore:  # optional, the source url of underscore.js
+  # sequence:    # optional, the source url of sequence-diagram.js
+  # css: # optional, the url for css, such as hand drawn theme 
+  options: 
+    theme: 
+    css_class: 
+
+flowchart:
+  # raphael:   # optional, the source url of raphael.js
+  # flowchart: # optional, the source url of flowchart.js
+  options: # options used for `drawSVG`
