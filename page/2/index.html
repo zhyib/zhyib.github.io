@@ -191,14 +191,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -250,6 +250,199 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">for...in 与 for...of 以及其它js中的循环方式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-14 20:50:06" itemprop="dateCreated datePublished" datetime="2020-12-14T20:50:06+08:00">2020-12-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-17 20:05:50" itemprop="dateModified" datetime="2021-05-17T20:05:50+08:00">2021-05-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>记录一下对几种循环方式的学习笔记。</p>
+<h2 id="for-…-in"><a href="#for-…-in" class="headerlink" title="for … in"></a>for … in</h2><p>一句话概括，<code>for ... in</code> 是对索引的循环。</p>
+<p>索引，对于数组和字符串而言就是<code>0 - n</code>，对于对象而言就是对象的<code>key</code></p>
+<figure class="highlight javascript"><figcaption><span>for ... in</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> b = &#123;<span class="string">&#x27;-1&#x27;</span> : <span class="number">1</span>, <span class="string">&#x27;-2&#x27;</span> : <span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">let</span> c = <span class="string">&#x27;xyz&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> a) &#123;<span class="built_in">console</span>.log(i)&#125;	<span class="comment">// &#x27;0&#x27;, &#x27;1&#x27;</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> b) &#123;<span class="built_in">console</span>.log(i)&#125;	<span class="comment">// &#x27;-1&#x27;. &#x27;-2&#x27;</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> c) &#123;<span class="built_in">console</span>.log(i)&#125;	<span class="comment">// &#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20201214/for-in-%E4%B8%8E-for-of-%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83js%E7%A7%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%96%B9%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/" class="post-title-link" itemprop="url">Ascii Unicode 与 UTF-8</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-12 17:25:04" itemprop="dateCreated datePublished" datetime="2020-12-12T17:25:04+08:00">2020-12-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-17 20:05:50" itemprop="dateModified" datetime="2021-05-17T20:05:50+08:00">2021-05-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>事情的起因是这样的</p>
+<p>我在NGA上看到个帖子，说是在不同的语言环境下的游戏文本</p>
+<blockquote>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/en.png" alt="英文文本"></p>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/jp.png" alt="日文文本"></p>
+<p><img src="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/zh.png" alt="中文文本"></p>
+</blockquote>
+<p>对应的编码不一样，对应的分别是Ascii编码的英文<code>Longing</code>，UTF-8编码的日文的<code>あこがれ</code>和中文的<code>憧憬</code></p>
+<p>就很好奇，跟着楼主给的链接去看了一下 Unicode 和 UTF-8</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20201212/Ascii-Unicode-%E4%B8%8E-UTF-8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20201212/%E9%9B%B6%E5%8F%B7%E6%96%87%E6%A1%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -281,7 +474,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-17 19:45:00" itemprop="dateModified" datetime="2021-05-17T19:45:00+08:00">2021-05-17</time>
+        <time title="修改时间：2021-05-17 20:05:50" itemprop="dateModified" datetime="2021-05-17T20:05:50+08:00">2021-05-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
