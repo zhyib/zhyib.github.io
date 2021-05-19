@@ -23,6 +23,10 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
+      - name: Show working dict
+        run: pwd
+      - name: And LS
+        run: ls
       - name: Install plugin
         run: cp -rf pulgins/hexo-filter-sequence/* node_modules/hexo-filter-sequence/
       - name: Build
