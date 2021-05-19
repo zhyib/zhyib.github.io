@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Install plugin
-        run: cp -rf pulgins/hexo-filter-sequence/* node_modules/hexo-filter-sequence/*
+        run: cp -rf pulgins/hexo-filter-sequence/* node_modules/hexo-filter-sequence/
       - name: Build
         run: npm run build
       - name: Deploy
