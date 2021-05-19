@@ -281,7 +281,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -373,7 +373,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -399,100 +399,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>123</p>
-<p>微信公众号小程序第三方获取授权流程</p>
-<p>这是一个类似平时的C-S模型，但在这模型中有一个问题，服务器能够获取到客户端的客户唯一标识，在微信中应该就是微信号。应该是出于保护用户隐私的目的，微信选择了使用<code>openid</code>来代替微信号作为唯一标识，同时，<code>openid</code>对于不同的公众号也是不同的，就是说，<code>openid</code>具有以下特征：</p>
+          <p>这是一个类似平时的C-S模型，但在这模型中有一个问题，服务器能够获取到客户端的客户唯一标识，在微信中应该就是微信号。应该是出于保护用户隐私的目的，微信选择了使用<code>openid</code>来代替微信号作为唯一标识，同时，<code>openid</code>对于不同的公众号也是不同的，就是说，<code>openid</code>具有以下特征：</p>
 <ul>
 <li>同一个公众号的不同用户<code>openid</code>不同（废话）</li>
 <li>同一个用户对不同公众号<code>openid</code>不同</li>
 </ul>
 <p>那么问题来了，公众号小程序是怎么知道当前访问的用户是哪个用户呢？这时就需要微信服务器作为中间件来做授权。</p>
-<p>以下简称：用户-&gt;客户端，公众号小程序-&gt;服务端，微信=微信服务器</p>
-<div id="sequence-0"></div>
-
-
-
-
-
-<p>code</p>
-<blockquote>
-<p><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE#wechat_redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE#wechat_redirect</a></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">是否必须</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">appid</td>
-<td align="left">是</td>
-<td align="left">公众号的唯一标识</td>
-</tr>
-<tr>
-<td align="left">redirect_uri</td>
-<td align="left">是</td>
-<td align="left">授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理</td>
-</tr>
-<tr>
-<td align="left">response_type</td>
-<td align="left">是</td>
-<td align="left">返回类型，请填写code</td>
-</tr>
-<tr>
-<td align="left">scope</td>
-<td align="left">是</td>
-<td align="left">应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）</td>
-</tr>
-<tr>
-<td align="left">state</td>
-<td align="left">否</td>
-<td align="left">重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节</td>
-</tr>
-<tr>
-<td align="left">#wechat_redirect</td>
-<td align="left">是</td>
-<td align="left">无论直接打开还是做页面302重定向时候，必须带此参数</td>
-</tr>
-</tbody></table>
-<p>openId</p>
-<blockquote>
-<p><a href="https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code">https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</a></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">是否必须</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">appid</td>
-<td align="left">是</td>
-<td align="left">公众号的唯一标识</td>
-</tr>
-<tr>
-<td align="left">secret</td>
-<td align="left">是</td>
-<td align="left">公众号的appsecret</td>
-</tr>
-<tr>
-<td align="left">code</td>
-<td align="left">是</td>
-<td align="left">填写第一步获取的code参数</td>
-</tr>
-<tr>
-<td align="left">grant_type</td>
-<td align="left">是</td>
-<td align="left">填写为authorization_code</td>
-</tr>
-</tbody></table>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20210517/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%AC%E4%B8%89%E6%96%B9%E8%8E%B7%E5%8F%96%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -549,7 +469,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -641,7 +561,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -734,7 +654,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -827,7 +747,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -921,7 +841,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1016,7 +936,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1109,7 +1029,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1209,7 +1129,7 @@ Bob-->Alice: I am good thanks!</textarea><textarea id="sequence-0-options" style
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-18 14:02:19" itemprop="dateModified" datetime="2021-05-18T14:02:19+08:00">2021-05-18</time>
+        <time title="修改时间：2021-05-19 15:18:04" itemprop="dateModified" datetime="2021-05-19T15:18:04+08:00">2021-05-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
