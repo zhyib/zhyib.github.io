@@ -114,8 +114,8 @@ sequence:
   snap: https://cdn.bootcss.com/snap.svg/0.5.1/snap.svg-min.js
   underscore: https://cdn.bootcss.com/underscore.js/1.9.1/underscore-min.js
   sequence: https://cdn.bootcss.com/js-sequence-diagrams/1.0.6/sequence-diagram-min.js
-  # css: # optional, the url for css, such as hand drawn theme 
-  options: 
+  # css: # optional, the url for css, such as hand drawn theme
+  options:
     theme: simple
 
 flowchart:
