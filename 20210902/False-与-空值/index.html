@@ -23,19 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="ACG - A Coding Gamer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AkiraZ&#39;s blog">
-<meta property="og:url" content="https://zhyib.github.io/archives/2021/08/">
+<meta name="description" content="基础类型真假表    TRUE FALSE    boolean true false   number others 0 NaN   string others ‘’ “”   undefined  undefined   null  null   object others, includes {} null   以上是六大基本类型，值得注意的是，其中 null 类型，如果使用 typeof，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="False 与 空值">
+<meta property="og:url" content="https://zhyib.github.io/20210902/False-%E4%B8%8E-%E7%A9%BA%E5%80%BC/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="ACG - A Coding Gamer">
+<meta property="og:description" content="基础类型真假表    TRUE FALSE    boolean true false   number others 0 NaN   string others ‘’ “”   undefined  undefined   null  null   object others, includes {} null   以上是六大基本类型，值得注意的是，其中 null 类型，如果使用 typeof，">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-02T06:13:58.000Z">
+<meta property="article:modified_time" content="2021-09-02T06:20:28.911Z">
 <meta property="article:author" content="Y. Z.">
-<meta property="article:tag" content="keywords1, keywords2">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://zhyib.github.io/archives/2021/08/">
+<link rel="canonical" href="https://zhyib.github.io/20210902/False-%E4%B8%8E-%E7%A9%BA%E5%80%BC/">
 
 
 <script class="page-configurations">
@@ -43,11 +45,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>归档 | AkiraZ's blog</title>
+<title>False 与 空值 | AkiraZ's blog</title>
   
 
 
@@ -165,7 +167,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -178,6 +180,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E7%9C%9F%E5%81%87%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">基础类型真假表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E6%95%B0%E7%BB%84%E4%B8%8E%E7%A9%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">空数组与空对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E4%B8%B2%E4%B8%8E%E7%A9%BA%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">3.</span> <span class="nav-text">空串与空格字符串</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -240,109 +243,159 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 19 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210902/False-%E4%B8%8E-%E7%A9%BA%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          False 与 空值
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：2021-09-02 14:13:58 / 修改时间：14:20:28" itemprop="dateCreated datePublished" datetime="2021-09-02T14:13:58+08:00">2021-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="基础类型真假表"><a href="#基础类型真假表" class="headerlink" title="基础类型真假表"></a>基础类型真假表</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>TRUE</th>
+<th>FALSE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>number</td>
+<td>others</td>
+<td>0 NaN</td>
+</tr>
+<tr>
+<td>string</td>
+<td>others</td>
+<td>‘’ “”</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>null</td>
+<td></td>
+<td>null</td>
+</tr>
+<tr>
+<td>object</td>
+<td>others, includes {}</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<p>以上是六大基本类型，值得注意的是，其中 <code>null</code> 类型，如果使用 <code>typeof</code>，返回值是 <code>&quot;object&quot;</code></p>
+<p>几个默认的假值在判断的时候就可以简写，或者写成 <code>!!varName</code> 转。</p>
+<a id="more"></a>
+
+<h2 id="空数组与空对象"><a href="#空数组与空对象" class="headerlink" title="空数组与空对象"></a>空数组与空对象</h2><p>注意：如果是空数组或者空对象 <code>[] &#123;&#125;</code>，无法直接判断，最简单的是转成字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify([]) === <span class="string">&#x27;[]&#x27;</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(&#123;&#125;) === <span class="string">&#x27;&#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者使用各自的方法，比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">arr.length === <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj).length === <span class="number">0</span>;</span><br><span class="line"><span class="built_in">Object</span>.keys(obj) === <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="空串与空格字符串"><a href="#空串与空格字符串" class="headerlink" title="空串与空格字符串"></a>空串与空格字符串</h2><p>如果直接判断空串 <code>&#39;&#39; &quot;&quot;</code> 可以直接 <code>if(str)</code>，但是如果是空格/换行符需要用到正则表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27; &#x27;</span></span><br><span class="line"></span><br><span class="line">(!!str) === <span class="literal">true</span>;  <span class="comment">// cannot use if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (str.match(<span class="regexp">/^\s$/</span>)) &#123;</span><br><span class="line">    <span class="comment">// true if space &amp; line-break</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-26T10:48:57+08:00"
-              content="2021-08-26">
-          08-26
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/20210826/Vuex/" itemprop="url">
-            <span itemprop="name">Vuex</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/20210901/this-%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91/" rel="prev" title="this 指针指向">
+                  <i class="fa fa-chevron-left"></i> this 指针指向
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-24T14:37:08+08:00"
-              content="2021-08-24">
-          08-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" itemprop="url">
-            <span itemprop="name">Json 和 表单提交</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-20T16:57:56+08:00"
-              content="2021-08-20">
-          08-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/20210820/axios-%E6%96%B9%E6%B3%95/" itemprop="url">
-            <span itemprop="name">axios 方法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-18T17:20:44+08:00"
-              content="2021-08-18">
-          08-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" itemprop="url">
-            <span itemprop="name">js 下载文件</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 
 <script>
