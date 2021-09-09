@@ -22,24 +22,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="简单地了解了一下WebSocket，做一下总结 什么是 WebSocket一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS WS 的特点为什么使用WS。 HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。 这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必">
+<meta name="description" content="FormData 对象Formdata 对象通常放在 post 请求的 data 位置，用来以表单形式提交数据， 12345$.ajax(&amp;#123;  url: &quot;stash.php&quot;,  type: &quot;POST&quot;,  data: fd,&amp;#125;);  了解了一下 FormData 对象的一些方法，做个记录 对象方法1const fd &#x3D; new Fo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebSocket入门">
-<meta property="og:url" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
+<meta property="og:title" content="FormData 对象">
+<meta property="og:url" content="https://zhyib.github.io/20210907/FormData-%E5%AF%B9%E8%B1%A1/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="简单地了解了一下WebSocket，做一下总结 什么是 WebSocket一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS WS 的特点为什么使用WS。 HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。 这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必">
+<meta property="og:description" content="FormData 对象Formdata 对象通常放在 post 请求的 data 位置，用来以表单形式提交数据， 12345$.ajax(&amp;#123;  url: &quot;stash.php&quot;,  type: &quot;POST&quot;,  data: fd,&amp;#125;);  了解了一下 FormData 对象的一些方法，做个记录 对象方法1const fd &#x3D; new Fo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png">
-<meta property="article:published_time" content="2021-01-25T13:09:58.000Z">
-<meta property="article:modified_time" content="2021-09-09T12:17:39.586Z">
+<meta property="article:published_time" content="2021-09-07T07:54:24.000Z">
+<meta property="article:modified_time" content="2021-09-09T12:17:39.590Z">
 <meta property="article:author" content="Y. Z.">
 <meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png">
 
 
-<link rel="canonical" href="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
+<link rel="canonical" href="https://zhyib.github.io/20210907/FormData-%E5%AF%B9%E8%B1%A1/">
 
 
 <script class="page-configurations">
@@ -51,7 +48,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>WebSocket入门 | AkiraZ's blog</title>
+<title>FormData 对象 | AkiraZ's blog</title>
   
 
 
@@ -182,7 +179,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-WebSocket"><span class="nav-number">1.</span> <span class="nav-text">什么是 WebSocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">WS 的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">WS 简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WS-%E4%B8%8E-HTTP-2-0"><span class="nav-number">4.</span> <span class="nav-text">WS 与 HTTP 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F12"><span class="nav-number">5.</span> <span class="nav-text">F12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FormData-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">FormData 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">对象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#append"><span class="nav-number">2.1.</span> <span class="nav-text">append</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">2.2.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">2.3.</span> <span class="nav-text">delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-getAll"><span class="nav-number">2.4.</span> <span class="nav-text">get, getAll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#has"><span class="nav-number">2.5.</span> <span class="nav-text">has</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keys-values-entries"><span class="nav-number">2.6.</span> <span class="nav-text">keys, values, entries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forEach"><span class="nav-number">2.7.</span> <span class="nav-text">forEach</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -256,7 +253,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210125/WebSocket%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210907/FormData-%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -269,7 +266,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          WebSocket入门
+          FormData 对象
         </h1>
 
         <div class="post-meta-container">
@@ -280,7 +277,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-25 21:09:58" itemprop="dateCreated datePublished" datetime="2021-01-25T21:09:58+08:00">2021-01-25</time>
+      <time title="创建时间：2021-09-07 15:54:24" itemprop="dateCreated datePublished" datetime="2021-09-07T15:54:24+08:00">2021-09-07</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -320,67 +317,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>简单地了解了一下WebSocket，做一下总结</p>
-<h2 id="什么是-WebSocket"><a href="#什么是-WebSocket" class="headerlink" title="什么是 WebSocket"></a>什么是 WebSocket</h2><p>一种可以类比HTTP的应用层协议，与HTTP、HTTP类似，也有WS和WSS</p>
-<h2 id="WS-的特点"><a href="#WS-的特点" class="headerlink" title="WS 的特点"></a>WS 的特点</h2><p>为什么使用WS。</p>
-<p>HTTP有他的劣势，即只能由客户端发起请求，然后由服务器回应。如果没有WS，就需要使用HTTP发起轮询——以固定时间间隔向服务器查询是否有新消息。</p>
-<p>这样势必有一个问题，比如客户端接收直播弹幕，若由客户端频繁发起查询，必将带来大量冗余流量，所以B站的直播弹幕协议使用的是WS。</p>
-<p>WS就相当于开启了一个长连接通道，客户端与服务器可以随时收发消息，是一种全双工模式。</p>
-<blockquote>
-<p>什么是单工、半双工、全工通信？</p>
-<p>信息只能单向传送为单工；<br>信息能双向传送但不能同时双向传送称为半双工；<br>信息能够同时双向传送则称为全双工。</p>
-</blockquote>
-<a id="more"></a>
+        <h2 id="FormData-对象"><a href="#FormData-对象" class="headerlink" title="FormData 对象"></a>FormData 对象</h2><p><code>Formdata</code> 对象通常放在 <code>post</code> 请求的 <code>data</code> 位置，用来以表单形式提交数据，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: &quot;stash.php&quot;,</span><br><span class="line">  type: &quot;POST&quot;,</span><br><span class="line">  data: fd,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="WS-简单使用"><a href="#WS-简单使用" class="headerlink" title="WS 简单使用"></a>WS 简单使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;wss://echo.websocket.org&#x27;</span>);</span><br><span class="line"></span><br><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Connection open ...&#x27;</span>);</span><br><span class="line">  ws.send(<span class="string">&#x27;Hello WebSockets!&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Received Message: &#x27;</span> + evt.data);</span><br><span class="line">  ws.close();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Connection closed.&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>浏览器可以直接运行，如果在node上执行，需要安装，之后<code>require</code>/<code>import</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ws</span><br></pre></td></tr></table></figure>
+<p>了解了一下 <code>FormData</code> 对象的一些方法，做个记录</p>
+<h2 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a>对象方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fd = <span class="keyword">new</span> FormData();</span><br></pre></td></tr></table></figure>
 
 
 
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>new WebSocket(url)</td>
-<td>WS构造函数，返回一个WS对象</td>
-</tr>
-<tr>
-<td>webSocket.onopen()</td>
-<td>WS连接成功后的回调</td>
-</tr>
-<tr>
-<td>webSocket.onclose()</td>
-<td>WS连接关闭后的回调</td>
-</tr>
-<tr>
-<td>webSocket.onerror()</td>
-<td>WS出错的回调</td>
-</tr>
-<tr>
-<td>webSocket.send(content)</td>
-<td>使用WS发送消息，可以是字符串或二进制对象</td>
-</tr>
-<tr>
-<td>webSocket.close()</td>
-<td>关闭WS</td>
-</tr>
-</tbody></table>
-<h2 id="WS-与-HTTP-2-0"><a href="#WS-与-HTTP-2-0" class="headerlink" title="WS 与 HTTP 2.0"></a>WS 与 HTTP 2.0</h2><p>HTTP/2 虽然也支持 Server Push，但是服务器只能主动将资源推送到客户端缓存！并不允许将数据推送到客户端里跑的 Web App 本身。服务器推送只能由浏览器处理，不会在应用程序代码中弹出服务器数据，这意味着应用程序没有 API 来获取这些事件的通知。</p>
-<ul>
-<li>为了接近实时地将数据推送给 Web App， HTTP/2 可以结合 SSE（Server-Sent Event）使用。</li>
-<li>SSE，服务端推送事件，是通过 HTTP 长连接进行信息推送的一个功能。它首先由浏览器向服务端建立一个 HTTP 长连接，然后服务端不断地通过这个长连接将消息推送给浏览器。</li>
-</ul>
-<h2 id="F12"><a href="#F12" class="headerlink" title="F12"></a>F12</h2><p><img src="/20210125/WebSocket%E5%85%A5%E9%97%A8/image-20210125215030670.png" alt="image-20210125215030670"></p>
-<p>在F12中查看WS，可以看到上行下行内容，图中例子是WSS，所以是经过加密的。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程 - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
-</blockquote>
+<h3 id="append"><a href="#append" class="headerlink" title="append"></a>append</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fd.append((name, value[, file_name]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 会自动转为字符串</span></span><br><span class="line"><span class="comment">// 可以持续对一个 name 添加，可以形成一个数组</span></span><br><span class="line"><span class="comment">// 也可以添加文件用来上传，会转成 blob</span></span><br><span class="line">fd.append(<span class="string">&#x27;k1&#x27;</span>, <span class="number">1</span>);</span><br><span class="line">fd.append(<span class="string">&#x27;k1&#x27;</span>, <span class="literal">undefined</span>);</span><br><span class="line">fd.append(<span class="string">&#x27;k1&#x27;</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">fd.get(<span class="string">&#x27;k1&#x27;</span>);			<span class="comment">// &#x27;1&#x27;</span></span><br><span class="line">fd.getAll(<span class="string">&#x27;k1&#x27;</span>);		<span class="comment">// [&#x27;1&#x27;, &#x27;undefined&#x27;, &#x27;null&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fd.set(name, value[, file_name]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接覆盖原来的值</span></span><br><span class="line">fd.set(<span class="string">&#x27;k1&#x27;</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">fd.get(<span class="string">&#x27;k1&#x27;</span>);			<span class="comment">// &#x27;2&#x27;</span></span><br><span class="line">fd.getAll(<span class="string">&#x27;k1&#x27;</span>);		<span class="comment">// [&#x27;2&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fd.delete(name);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除这个键</span></span><br><span class="line">fd.delete(<span class="string">&#x27;k1&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fd.get(<span class="string">&#x27;k1&#x27;</span>);			<span class="comment">// null</span></span><br><span class="line">fd.getAll(<span class="string">&#x27;k1&#x27;</span>);		<span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="get-getAll"><a href="#get-getAll" class="headerlink" title="get, getAll"></a>get, getAll</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fd.get(name);</span><br><span class="line">fd.getAll(name);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get 返回第一个值</span></span><br><span class="line"><span class="comment">// getAll 返回这个键对应的所有值的数组</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="has"><a href="#has" class="headerlink" title="has"></a>has</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fd.has(name);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 有/无 键	true / false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="keys-values-entries"><a href="#keys-values-entries" class="headerlink" title="keys, values, entries"></a>keys, values, entries</h3><p>类似 <code>Object</code> 的方法，只不过返回的不是数组而是迭代器</p>
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h3><p>类似数组，对值进行遍历</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -391,21 +357,17 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
-              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/20201224/LeetCode-135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" rel="prev" title="LeetCode 135 分发糖果">
-                  <i class="fa fa-chevron-left"></i> LeetCode 135 分发糖果
+                <a href="/20210902/False-%E4%B8%8E-%E7%A9%BA%E5%80%BC/" rel="prev" title="False 与 空值">
+                  <i class="fa fa-chevron-left"></i> False 与 空值
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/20210322/LeetCode-1803-%E7%BB%9F%E8%AE%A1%E5%BC%82%E6%88%96%E5%80%BC%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E6%95%B0%E5%AF%B9%E6%9C%89%E5%A4%9A%E5%B0%91/" rel="next" title="LeetCode 1803 统计异或值在范围内的数对有多少">
-                  LeetCode 1803 统计异或值在范围内的数对有多少 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

@@ -17,22 +17,21 @@
 
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="静态资源后台服务器有静态资源且是固定的文件名（GET方式下载文件） 1window.location.href&#x3D;&quot;http:&#x2F;&#x2F;www.域名&#x2F;template.xlsx(文件名)&quot;    返回文件流123456789101112131415161718192021222324axios.post(url, &amp;#123;        params    &amp;#125;, &amp;#12">
+<meta name="description" content="下载类型目前业务上碰到有两种下载类型，一种是返回的是文件在服务器上的所处位置，另一种返回的是整个文件的编码后的数组。这两者下载方式略有区别，但是大同小异。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js 下载文件">
 <meta property="og:url" content="https://zhyib.github.io/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="静态资源后台服务器有静态资源且是固定的文件名（GET方式下载文件） 1window.location.href&#x3D;&quot;http:&#x2F;&#x2F;www.域名&#x2F;template.xlsx(文件名)&quot;    返回文件流123456789101112131415161718192021222324axios.post(url, &amp;#123;        params    &amp;#125;, &amp;#12">
+<meta property="og:description" content="下载类型目前业务上碰到有两种下载类型，一种是返回的是文件在服务器上的所处位置，另一种返回的是整个文件的编码后的数组。这两者下载方式略有区别，但是大同小异。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhyib.github.io/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/image-20210818195137755.png">
 <meta property="article:published_time" content="2021-08-18T09:20:44.000Z">
-<meta property="article:modified_time" content="2021-09-02T06:20:28.911Z">
+<meta property="article:modified_time" content="2021-09-09T12:17:39.586Z">
 <meta property="article:author" content="Y. Z.">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="网络协议">
@@ -94,7 +93,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -115,7 +114,7 @@
       <h1 class="site-title">AkiraZ's blog</h1>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">愿键盘的余温传递到更远的将来</p>
+      <p class="site-subtitle" itemprop="description">愿键盘的余温传递到更遥远的将来</p>
   </div>
 
   <div class="site-nav-right">
@@ -183,7 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">静态资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%96%87%E4%BB%B6%E6%B5%81"><span class="nav-number">2.</span> <span class="nav-text">返回文件流</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">下载类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">下载资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="nav-number">2.1.</span> <span class="nav-text">静态资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%96%87%E4%BB%B6%E6%B5%81"><span class="nav-number">2.2.</span> <span class="nav-text">返回文件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Base64-%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.1.</span> <span class="nav-text">Base64 编码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A0%81%E5%80%BC%E8%A1%A8"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">码值表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.2.2.</span> <span class="nav-text">下载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FileReader"><span class="nav-number">3.</span> <span class="nav-text">FileReader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">对象方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">事件</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -197,7 +196,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -288,7 +287,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-02 14:20:28" itemprop="dateModified" datetime="2021-09-02T14:20:28+08:00">2021-09-02</time>
+        <time title="修改时间：2021-09-09 20:17:39" itemprop="dateModified" datetime="2021-09-09T20:17:39+08:00">2021-09-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,14 +320,269 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h3><p>后台服务器有静态资源且是固定的文件名（GET方式下载文件）</p>
+        <h2 id="下载类型"><a href="#下载类型" class="headerlink" title="下载类型"></a>下载类型</h2><p>目前业务上碰到有两种下载类型，一种是返回的是文件在服务器上的所处位置，另一种返回的是整个文件的编码后的数组。这两者下载方式略有区别，但是大同小异。</p>
+<a id="more"></a>
+
+
+
+<h2 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h2><h3 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h3><p>后台服务器有静态资源且是固定的文件名（GET方式下载文件）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=&quot;http://www.域名/template.xlsx(文件名)&quot;</span><br></pre></td></tr></table></figure>
 
+<p>写全了就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params">fileName, link</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    a.download = fileName;</span><br><span class="line">    a.href = link;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">    a.click();</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(a);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p> 解释一下代码，看起来是临时创建了一个 <code>&lt;a/&gt;</code> 标签，之后给标签赋值一个 <code>download</code> 文件名，一个 <code>href</code> 表示连接地址。之后临时加到页面上，模拟一个点击事件，执行下载，完事之后销毁。</p>
+<h3 id="返回文件流"><a href="#返回文件流" class="headerlink" title="返回文件流"></a>返回文件流</h3><h4 id="Base64-编码"><a href="#Base64-编码" class="headerlink" title="Base64 编码"></a>Base64 编码</h4><p>简述一下 Base64 编码，因为 URL 只能传输字符，所以这种方式的编码能把所有字符编码成 <strong>可打印字符</strong>。</p>
+<p>基本原理是，每三个字符一组，共 3*8=24 bits，分成四份，每份的 6bits 按照以下码值表转码。余下的位置用 <code>=</code> 占位</p>
+<h5 id="码值表"><a href="#码值表" class="headerlink" title="码值表"></a>码值表</h5><table>
+<thead>
+<tr>
+<th align="left">码值</th>
+<th align="left">字符</th>
+<th align="left">码值</th>
+<th align="left">字符</th>
+<th align="left">码值</th>
+<th align="left">字符</th>
+<th align="left">码值</th>
+<th align="left">字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">16</td>
+<td align="left">Q</td>
+<td align="left">32</td>
+<td align="left">g</td>
+<td align="left">48</td>
+<td align="left">w</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">B</td>
+<td align="left">17</td>
+<td align="left">R</td>
+<td align="left">33</td>
+<td align="left">h</td>
+<td align="left">49</td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">C</td>
+<td align="left">18</td>
+<td align="left">S</td>
+<td align="left">34</td>
+<td align="left">i</td>
+<td align="left">50</td>
+<td align="left">y</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">D</td>
+<td align="left">19</td>
+<td align="left">T</td>
+<td align="left">35</td>
+<td align="left">j</td>
+<td align="left">51</td>
+<td align="left">z</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">E</td>
+<td align="left">20</td>
+<td align="left">U</td>
+<td align="left">36</td>
+<td align="left">k</td>
+<td align="left">52</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">F</td>
+<td align="left">21</td>
+<td align="left">V</td>
+<td align="left">37</td>
+<td align="left">l</td>
+<td align="left">53</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">G</td>
+<td align="left">22</td>
+<td align="left">W</td>
+<td align="left">38</td>
+<td align="left">m</td>
+<td align="left">54</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">H</td>
+<td align="left">23</td>
+<td align="left">X</td>
+<td align="left">39</td>
+<td align="left">n</td>
+<td align="left">55</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">I</td>
+<td align="left">24</td>
+<td align="left">Y</td>
+<td align="left">40</td>
+<td align="left">o</td>
+<td align="left">56</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">J</td>
+<td align="left">25</td>
+<td align="left">Z</td>
+<td align="left">41</td>
+<td align="left">p</td>
+<td align="left">57</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">K</td>
+<td align="left">26</td>
+<td align="left">a</td>
+<td align="left">42</td>
+<td align="left">q</td>
+<td align="left">58</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">L</td>
+<td align="left">27</td>
+<td align="left">b</td>
+<td align="left">43</td>
+<td align="left">r</td>
+<td align="left">59</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td align="left">M</td>
+<td align="left">28</td>
+<td align="left">c</td>
+<td align="left">44</td>
+<td align="left">s</td>
+<td align="left">60</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">N</td>
+<td align="left">29</td>
+<td align="left">d</td>
+<td align="left">45</td>
+<td align="left">t</td>
+<td align="left">61</td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left">14</td>
+<td align="left">O</td>
+<td align="left">30</td>
+<td align="left">e</td>
+<td align="left">46</td>
+<td align="left">u</td>
+<td align="left">62</td>
+<td align="left">+</td>
+</tr>
+<tr>
+<td align="left">15</td>
+<td align="left">P</td>
+<td align="left">31</td>
+<td align="left">f</td>
+<td align="left">47</td>
+<td align="left">v</td>
+<td align="left">63</td>
+<td align="left">/</td>
+</tr>
+</tbody></table>
+<h5 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">        J         S         c          r         i         p          t</span><br><span class="line">Ascii   74        83        99         114       105       112        116</span><br><span class="line">bin     01001010  01010011  01100011   01110010  01101001  01110000   01110100</span><br><span class="line">6bits   010010 100101  001101 100011   011100 100110  100101 110000   011101 00 0000 </span><br><span class="line">dec     18     37      13     35       28     38      37     48       29     0</span><br><span class="line">base64  S      l       N      j        c      m       l      w        d      A</span><br><span class="line">result  SlNjcmlwdA&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
 
-<h3 id="返回文件流"><a href="#返回文件流" class="headerlink" title="返回文件流"></a>返回文件流</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">axios.post(url, &#123;</span><br><span class="line">        params</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">    	responseType: <span class="string">&#x27;blob&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> blob = res.data;</span><br><span class="line">        <span class="comment">// FileReader主要用于将文件内容读入内存</span></span><br><span class="line">        <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">        reader.readAsDataURL(blob);</span><br><span class="line">        <span class="comment">// onload当读取操作成功完成时调用</span></span><br><span class="line">        reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        <span class="comment">// 获取文件名fileName</span></span><br><span class="line">        <span class="keyword">var</span> fileName = res.headers[<span class="string">&quot;content-disposition&quot;</span>].split(<span class="string">&quot;=&quot;</span>);</span><br><span class="line">        fileName = fileName[fileName.length - <span class="number">1</span>];</span><br><span class="line">        fileName = fileName.replace(<span class="regexp">/&quot;/g</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        a.download = fileName;</span><br><span class="line">        a.href = e.target.result;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">        a.click();</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注：6bits 分组不够时用 <code>0</code> 补齐；转为base64后不是4的倍数用 <code>=</code> 补齐</p>
+<p>最后，base64是一种编码方式，而不是一种压缩方式，由于它使用4个字符来表示3个字符，总体大小会比原来大。</p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">axios.post(url, &#123;</span><br><span class="line">        params</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">    	responseType: <span class="string">&#x27;blob&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> blob = res.data;</span><br><span class="line">        <span class="comment">// FileReader主要用于将文件内容读入内存</span></span><br><span class="line">        <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">        reader.readAsDataURL(blob);</span><br><span class="line">        <span class="comment">// onload当读取操作成功完成时回调</span></span><br><span class="line">        reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        	<span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">            <span class="comment">// 获取文件名fileName</span></span><br><span class="line">            <span class="keyword">var</span> fileName = res.headers[<span class="string">&quot;content-disposition&quot;</span>].split(<span class="string">&quot;=&quot;</span>);</span><br><span class="line">            fileName = fileName[fileName.length - <span class="number">1</span>];</span><br><span class="line">            fileName = fileName.replace(<span class="regexp">/&quot;/g</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">            a.download = fileName;</span><br><span class="line">            a.href = e.target.result;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">            a.click();</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <p><img src="/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/image-20210818195137755.png" alt="一种实现"></p>
+<p>上图是一种实现，区别是这里使用了 <code>FileReader</code> 来将一个 <code>Uint8Array</code> 包装成了一个可读取的文件（dataURL）</p>
+<h2 id="FileReader"><a href="#FileReader" class="headerlink" title="FileReader"></a><code>FileReader</code></h2><p>顺便提一下 <code>FileReader</code>。</p>
+<h3 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a>对象方法</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abort</td>
+<td>none</td>
+<td>中断读取</td>
+</tr>
+<tr>
+<td>readAsBinaryString</td>
+<td>file</td>
+<td>将文件读取为二进制码</td>
+</tr>
+<tr>
+<td>readAsDataURL</td>
+<td>file</td>
+<td>将文件读取为 DataURL</td>
+</tr>
+<tr>
+<td>readAsText</td>
+<td>file, [encoding]</td>
+<td>将文件读取为文本</td>
+</tr>
+</tbody></table>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onabort</td>
+<td>中断时触发</td>
+</tr>
+<tr>
+<td>onerror</td>
+<td>出错时触发</td>
+</tr>
+<tr>
+<td>onload</td>
+<td>文件读取成功完成时触发</td>
+</tr>
+<tr>
+<td>onloadend</td>
+<td>读取完成触发，无论成功或失败</td>
+</tr>
+<tr>
+<td>onloadstart</td>
+<td>读取开始时触发</td>
+</tr>
+<tr>
+<td>onprogress</td>
+<td>读取中</td>
+</tr>
+</tbody></table>
+<p>所以上面的就是</p>
+<ul>
+<li>读取文件成一个url</li>
+<li>在读取完成以后触发下载流程</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -428,7 +682,7 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 
