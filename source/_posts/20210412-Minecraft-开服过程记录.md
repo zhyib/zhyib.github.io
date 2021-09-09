@@ -33,15 +33,17 @@ apt-get install openjdk-8-jdk
 
 ### 启动
 
+Set max and min ram size for jvm.
+
 ```sh
 java -Xmx1000M -Xms800M -XX:+AggressiveOpts -jar jar_file
 ```
 
-Set max and min ram size for jvm.
-
 
 
 ###  scp 指令
+
+从本地上传文件到远程
 
 ```sh
 scp local_file [remote_username@]remote_ip:remote_folder [-r]
@@ -50,6 +52,8 @@ scp local_file [remote_username@]remote_ip:remote_folder [-r]
 
 
 ### pscp 指令
+
+从远程下载文件到本地
 
 ```sh
 pscp [remote_username@]remote_ip:remote_folder local_file [-r]

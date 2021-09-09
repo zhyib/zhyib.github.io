@@ -7,6 +7,7 @@ categories:
 tags:
 - JavaScript
 ---
+
 记录一下对几种循环方式的学习笔记。
 
 
@@ -58,9 +59,9 @@ let a = [1, 2];
 let b = {'-1' : 1, '-2' : 2};
 let c = 'xyz'
 
-for (let i in a) {console.log(i)}	// 1, 2
-for (let i in b) {console.log(i)}	// Uncaught TypeError: b.forEach is not a function
-for (let i in c) {console.log(i)}	// Uncaught TypeError: c.forEach is not a function
+a.forEach((item) => {console.log(item)})	// 1, 2
+b.forEach((item) => {console.log(item)})	// Uncaught TypeError: b.forEach is not a function
+c.forEach((item) => {console.log(item)})	// Uncaught TypeError: c.forEach is not a function
 ```
 
 
@@ -85,4 +86,4 @@ Object.entries(b).forEach((item) => {console.log(item)})	// [ '-1', 1 ], [ '-2',
 
 提一嘴这个，以上两个`for`都会对继承而来的属性进行访问（至少eslint不推荐我用），附一个属性可见性参考链接
 
-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
+> https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
