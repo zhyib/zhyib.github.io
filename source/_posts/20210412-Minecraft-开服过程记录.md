@@ -5,8 +5,7 @@ categories:
 - 技术
 - 摸鱼技术
 tags:
-- MC
-- 服务器
+- 杂谈
 ---
 
 > 注：该sudo就sudo

@@ -4,8 +4,9 @@ date: 2021-10-09 14:19:11
 categories:
 - 技术
 - 前端
-  tags:
+tags:
 - JavaScript
+- bootstrap
 ---
 
 简单记个笔记
