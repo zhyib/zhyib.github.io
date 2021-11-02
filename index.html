@@ -190,7 +190,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -249,6 +249,371 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211102/element-ui%E9%80%89%E9%A1%B9%E6%94%B9%E5%8F%98%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8Evue%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211102/element-ui%E9%80%89%E9%A1%B9%E6%94%B9%E5%8F%98%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8Evue%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">element-ui选项改变后不立即更新的问题与vue的双向数据绑定</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-11-02 09:35:59 / 修改时间：10:08:26" itemprop="dateCreated datePublished" datetime="2021-11-02T09:35:59+08:00">2021-11-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="element-ui-选项改变后不立即更新的问题与-vue-的双向数据绑定"><a href="#element-ui-选项改变后不立即更新的问题与-vue-的双向数据绑定" class="headerlink" title="element-ui 选项改变后不立即更新的问题与 vue 的双向数据绑定"></a>element-ui 选项改变后不立即更新的问题与 vue 的双向数据绑定</h1><h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>element-ui 下拉框选项改变后没有立即更新值，而是在下一个选项被选择之后，上一个选项的值才会被更新。查了资料最后确定应该是 Vue 的双向数据绑定上的问题，简单说就是如果直接更改对象，Vue 会对其中所有 key 进行监听，如果直接插入一个 key-value，则不会。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20211102/element-ui%E9%80%89%E9%A1%B9%E6%94%B9%E5%8F%98%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8Evue%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211014/Axios-%E5%8F%96%E6%B6%88%E5%8F%91%E9%80%81%E7%9A%84%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211014/Axios-%E5%8F%96%E6%B6%88%E5%8F%91%E9%80%81%E7%9A%84%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">Axios 取消发送的请求</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-14 15:25:04" itemprop="dateCreated datePublished" datetime="2021-10-14T15:25:04+08:00">2021-10-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Axios-取消发送的请求"><a href="#Axios-取消发送的请求" class="headerlink" title="Axios 取消发送的请求"></a>Axios 取消发送的请求</h1><p>功能，在发出上一个请求还没返回的时候，为了防止有连续多个请求返回，对上一个未返回的请求执行取消操作。</p>
+<p>底层是 <code>axios</code> 调用了 <code>XMLHttpRequest </code> 的 <code>abort()</code> 操作，取消上一条请求</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/abort">XMLHttpRequest.abort() - Web API 接口参考 | MDN (mozilla.org)</a></p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cancel = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 检查是否有 cancelToken，有就会执行</span></span><br><span class="line">    <span class="comment">// 背后的调用做过处理</span></span><br><span class="line">    <span class="comment">// 如果请求已经返回或者已经被取消就不会执行</span></span><br><span class="line">    <span class="keyword">if</span> (cancel) &#123;</span><br><span class="line">        cancel();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.axios(&#123;</span><br><span class="line">        method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        url: <span class="string">&#x27;...&#x27;</span>,</span><br><span class="line">        <span class="comment">// 请求时配置，将 cancelToken 保存至一个全局变量，之后使用</span></span><br><span class="line">        cancelToken: <span class="keyword">new</span> <span class="built_in">this</span>.axios.CancelToken(<span class="function"><span class="params">ct</span> =&gt;</span> &#123;</span><br><span class="line">            token = ct;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">        .then(...)</span><br><span class="line">        .catch(...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比较容易理解</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211014/JS-toFixed-%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211014/JS-toFixed-%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">JS toFixed 精度问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-14 13:22:24" itemprop="dateCreated datePublished" datetime="2021-10-14T13:22:24+08:00">2021-10-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JS-toFixed-精度问题"><a href="#JS-toFixed-精度问题" class="headerlink" title="JS toFixed 精度问题"></a>JS toFixed 精度问题</h1><p>需求是遇到一个需要保留两位小数，但是出现了预期之外的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">15.845</span>).toFixed(<span class="number">2</span>);		<span class="comment">// 15.85</span></span><br><span class="line">(<span class="number">16.845</span>).toFixed(<span class="number">2</span>);		<span class="comment">// 16.84</span></span><br></pre></td></tr></table></figure>
+
+<p>显然是不符合四舍五入规则的，最后的原因在官方文档中已写明，而且根本不是特殊的四舍五入规则的原因。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20211014/JS-toFixed-%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211009/bootstrap-%E7%9A%84-modal-%E6%A8%A1%E6%80%81%E6%A1%86%E5%BC%80%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211009/bootstrap-%E7%9A%84-modal-%E6%A8%A1%E6%80%81%E6%A1%86%E5%BC%80%E5%85%B3/" class="post-title-link" itemprop="url">bootstrap 的 modal 模态框开关</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-09 14:19:11" itemprop="dateCreated datePublished" datetime="2021-10-09T14:19:11+08:00">2021-10-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>简单记个笔记</p>
+<h3 id="模态框的开启"><a href="#模态框的开启" class="headerlink" title="模态框的开启"></a>模态框的开启</h3><p>使用 <code>data-toggle</code> 和 <code>data-target</code> 或 <code>data-toggle</code> 和 <code>href</code> 的组合</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;button</span><br><span class="line">        data-toggle=&quot;modal&quot;</span><br><span class="line">        data-target=&quot;#modal-id&quot;</span><br><span class="line">        &gt;</span><br><span class="line">    按钮</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20211009/bootstrap-%E7%9A%84-modal-%E6%A8%A1%E6%80%81%E6%A1%86%E5%BC%80%E5%85%B3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210930/jQuery-dataTable-%E9%A1%B5%E9%9D%A2%E5%8F%98%E5%8C%96%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A6%96%E9%A1%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -280,7 +645,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -306,7 +671,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>由于最近的也业务原因，又开始使用 jQuery，jQuery 的组件虽然丰富，但是感觉不太协调，各管各的，配置起来也比较麻烦，这里先说个遇到的问题</p>
+          <p>由于最近的业务原因，又开始使用 jQuery，jQuery 的组件虽然丰富，但是感觉不太协调，各管各的，配置起来也比较麻烦，这里先说个遇到的问题</p>
 <p>业务场景是这样的，需要在页面显示数量变更的时候自动切换到第一页，但是如果是默认的配置不会有这样的功能。</p>
           <!--noindex-->
             <div class="post-button">
@@ -372,7 +737,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -438,6 +803,98 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210918/ajax%E4%BC%A0json/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20210918/ajax%E4%BC%A0json/" class="post-title-link" itemprop="url">ajax传json</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-18 15:43:15" itemprop="dateCreated datePublished" datetime="2021-09-18T15:43:15+08:00">2021-09-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于项目的原因，最近又开始用 <code>ajax</code> 了，遇到了一个问题就记个笔记。</p>
+<h2 id="关于传值"><a href="#关于传值" class="headerlink" title="关于传值"></a>关于传值</h2><p>传值到底是传 <code>formDara</code> 还是 JSON 就不谈了，主要看后端需求</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20210918/ajax%E4%BC%A0json/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210907/FormData-%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -469,7 +926,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -563,7 +1020,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -694,7 +1151,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
+        <time title="修改时间：2021-11-02 10:08:26" itemprop="dateModified" datetime="2021-11-02T10:08:26+08:00">2021-11-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -730,512 +1187,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20210901/this-%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210826/Vuex/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210826/Vuex/" class="post-title-link" itemprop="url">Vuex</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-26 10:48:57" itemprop="dateCreated datePublished" datetime="2021-08-26T10:48:57+08:00">2021-08-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>官方手册</p>
-<p><a href="https://vuex.vuejs.org/zh/">https://vuex.vuejs.org/zh/</a></p>
-</blockquote>
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><blockquote>
-<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;&#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>一个简单的示例</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210826/Vuex/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" class="post-title-link" itemprop="url">Json 和 表单提交</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-24 14:37:08" itemprop="dateCreated datePublished" datetime="2021-08-24T14:37:08+08:00">2021-08-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>研究了一下关于post请求时候发送参数的两种方式，<strong>表单形式</strong>和<strong>JSON</strong>形式。</p>
-<p>两者最明显的区别还是在于</p>
-<ul>
-<li>传参的时候需要转换</li>
-<li>在控制台上呈现不同</li>
-</ul>
-<h2 id="两者不同与相同点"><a href="#两者不同与相同点" class="headerlink" title="两者不同与相同点"></a>两者不同与相同点</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>JSON</th>
-<th>表单（form data)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>请求头 Content-Type</td>
-<td>application/json</td>
-<td>application/x-www-form-urlencoded</td>
-</tr>
-<tr>
-<td>数据格式</td>
-<td>{“a”=1,”b”=2}</td>
-<td>a=1&amp;b=2</td>
-</tr>
-<tr>
-<td>预处理</td>
-<td>不需要</td>
-<td>Qs.stringify(object)</td>
-</tr>
-<tr>
-<td>位置</td>
-<td>请求体</td>
-<td>请求体</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210820/axios-%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210820/axios-%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">axios 方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-20 16:57:56" itemprop="dateCreated datePublished" datetime="2021-08-20T16:57:56+08:00">2021-08-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><a href="https://www.kancloud.cn/yunye/axios/234845">https://www.kancloud.cn/yunye/axios/234845</a></p>
-</blockquote>
-<h2 id="axios-request-API"><a href="#axios-request-API" class="headerlink" title="axios request API"></a>axios request API</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本体 包括别名版本</span></span><br><span class="line">axios(config);</span><br><span class="line">axios(url[, config])</span><br><span class="line"></span><br><span class="line">axios.request(config)</span><br><span class="line"></span><br><span class="line">axios.get(url[, config])</span><br><span class="line">axios.delete(url[, config])</span><br><span class="line">axios.head(url[, config])</span><br><span class="line">axios.post(url[, data[, config]])</span><br><span class="line">axios.put(url[, data[, config]])</span><br><span class="line">axios.patch(url[, data[, config]])</span><br></pre></td></tr></table></figure>
-
-<p>综上，<code>post</code> <code>put</code> <code>patch</code> 三个方法默认第二参数为 <code>data</code>，即参数作为请求体<code>request body</code>传输。</p>
-<p>当然如果需要以 url 形式传输<code>data</code>，需要把参数放在 <code>config</code> 的 <code>params</code> 选项中。</p>
-<p>其余三个请求 <code>get</code> <code>delete</code> <code>head</code> 第二个参数即为 <code>config</code></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210820/axios-%E6%96%B9%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">js 下载文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-18 17:20:44" itemprop="dateCreated datePublished" datetime="2021-08-18T17:20:44+08:00">2021-08-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="下载类型"><a href="#下载类型" class="headerlink" title="下载类型"></a>下载类型</h2><p>目前业务上碰到有两种下载类型，一种是返回的是文件在服务器上的所处位置，另一种返回的是整个文件的编码后的数组。这两者下载方式略有区别，但是大同小异。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210818/js%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/" class="post-title-link" itemprop="url">从window.location到URL</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-17 19:39:08" itemprop="dateCreated datePublished" datetime="2021-05-17T19:39:08+08:00">2021-05-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-14 15:28:03" itemprop="dateModified" datetime="2021-10-14T15:28:03+08:00">2021-10-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h2><p>location === window.location，记录的是浏览器URL的相关信息。</p>
-<p>随手取了三个<code>window.location</code>，最后结合 <a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC 3986: Uniform Resource Identifier (URI): Generic Syntax @ ietf.org</a>来分析一下URL结构</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210517/%E4%BB%8Ewindow-location%E5%88%B0URL/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
