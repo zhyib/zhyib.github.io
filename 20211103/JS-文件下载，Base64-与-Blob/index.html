@@ -22,21 +22,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="大概看了一下localStorage和sessionStorage的特性和基本操作 概述localStorage 属性允许你访问一个Document 的 Storage；存储的数据将保存在浏览器会话中。 localStorage 类似sessionStorage，但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束，当页面被关闭时，存储在 sessionStorag">
+<meta name="description" content="Base64之前写过一个方案，是通过转成blob再通过 FileReader 实现的， 123456789101112131415161718function(base64) &amp;#123;    &#x2F;&#x2F; 传进来的是一个 base64 编码的字符串    &#x2F;&#x2F; 转成二进制    const byteString &#x3D; atob(base64);    const u8Arr &#x3D; new Uint8Arr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器Storage存储">
-<meta property="og:url" content="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
+<meta property="og:title" content="JS 文件下载，Base64 与 Blob">
+<meta property="og:url" content="https://zhyib.github.io/20211103/JS-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%EF%BC%8CBase64-%E4%B8%8E-Blob/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="大概看了一下localStorage和sessionStorage的特性和基本操作 概述localStorage 属性允许你访问一个Document 的 Storage；存储的数据将保存在浏览器会话中。 localStorage 类似sessionStorage，但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束，当页面被关闭时，存储在 sessionStorag">
+<meta property="og:description" content="Base64之前写过一个方案，是通过转成blob再通过 FileReader 实现的， 123456789101112131415161718function(base64) &amp;#123;    &#x2F;&#x2F; 传进来的是一个 base64 编码的字符串    &#x2F;&#x2F; 转成二进制    const byteString &#x3D; atob(base64);    const u8Arr &#x3D; new Uint8Arr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-12T01:12:11.000Z">
-<meta property="article:modified_time" content="2021-11-03T07:04:49.984Z">
+<meta property="article:published_time" content="2021-11-03T06:45:45.000Z">
+<meta property="article:modified_time" content="2021-11-03T07:04:49.988Z">
 <meta property="article:author" content="Y. Z.">
+<meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
+<link rel="canonical" href="https://zhyib.github.io/20211103/JS-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%EF%BC%8CBase64-%E4%B8%8E-Blob/">
 
 
 <script class="page-configurations">
@@ -48,7 +49,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>浏览器Storage存储 | AkiraZ's blog</title>
+<title>JS 文件下载，Base64 与 Blob | AkiraZ's blog</title>
   
 
 
@@ -179,7 +180,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Base64"><span class="nav-number">1.</span> <span class="nav-text">Base64</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-MIME-%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">关于 MIME 类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blob"><span class="nav-number">2.</span> <span class="nav-text">Blob</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -253,7 +254,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211103/JS-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%EF%BC%8CBase64-%E4%B8%8E-Blob/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -266,7 +267,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          浏览器Storage存储
+          JS 文件下载，Base64 与 Blob
         </h1>
 
         <div class="post-meta-container">
@@ -276,16 +277,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-05-12 09:12:11" itemprop="dateCreated datePublished" datetime="2021-05-12T09:12:11+08:00">2021-05-12</time>
+      <time title="创建时间：2021-11-03 14:45:45 / 修改时间：15:04:49" itemprop="dateCreated datePublished" datetime="2021-11-03T14:45:45+08:00">2021-11-03</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -317,27 +312,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>大概看了一下<code>localStorage</code>和<code>sessionStorage</code>的特性和基本操作</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>localStorage</code> 属性允许你访问一个<code>Document </code>的 <code>Storage</code>；存储的数据将保存在浏览器会话中。</p>
-<p><code>localStorage</code> 类似<code>sessionStorage</code>，但其区别在于：存储在 <code>localStorage</code> 的数据可以<strong>长期保留</strong>；而当页面会话结束，当页面被关闭时，存储在 <code>sessionStorage</code> 的数据会被清除 。</p>
+        <h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2><p>之前写过一个方案，是通过转成blob再通过 <code>FileReader</code> 实现的，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">base64</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 传进来的是一个 base64 编码的字符串</span></span><br><span class="line">    <span class="comment">// 转成二进制</span></span><br><span class="line">    <span class="keyword">const</span> byteString = atob(base64);</span><br><span class="line">    <span class="keyword">const</span> u8Arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(byteString.split(<span class="string">&#x27;&#x27;</span>).map(<span class="function"><span class="params">x</span> =&gt;</span> x.charCodeAt(<span class="number">0</span>)));</span><br><span class="line">    <span class="comment">// 生成二进制对象</span></span><br><span class="line">    <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([u8Arr]);</span><br><span class="line">    <span class="comment">// 使用 reader 读取并下载</span></span><br><span class="line">    <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">    reader.readAsDataURL(blob);</span><br><span class="line">    reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        a.download = e.target.result;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">        a.click();</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<ul>
-<li>页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。</li>
-<li><strong>在新标签或窗口打开一个页面时会复制顶级浏览会话的session作为新会话的session，</strong>这点和 session cookies 的运行方式不同。</li>
-<li>打开多个相同的URL的Tabs页面，会创建各自的<code>sessionStorage</code>。</li>
-<li>关闭对应浏览器窗口（Window）/ tab，会清除对应的<code>sessionStorage</code>。 </li>
-</ul>
-<blockquote>
-<p>存储在<code>sessionStorage</code>或<code>localStorage</code>中的数据<strong>特定于页面的协议</strong></p>
-<p>也就是说<code>http://example.com</code> 与 <code>https://example.com</code>的<code>sessionStorage</code>相互隔离。</p>
-<p>被存储的键值对总是以UTF-16 DOMString 的格式所存储，其使用两个字节来表示一个字符。对于对象、整数key值会自动转换成字符串形式。</p>
+<p>但是现在发现Base64可以直接下载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">base64</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    <span class="comment">// 直接把 base64 拼在href</span></span><br><span class="line">    a.download = <span class="string">&#x27;data:application/octet-stream;base64&#x27;</span> + base64;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">    a.click();</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器能直接识别出这种 <code>href</code>，以 <code>data:application/octet-stream;base64</code> 开头，表示默认需要下载的应用类型，并且可以直接进行 Base64 到二进制文件的转码。</p>
+<h3 id="关于-MIME-类型"><a href="#关于-MIME-类型" class="headerlink" title="关于 MIME 类型"></a>关于 MIME 类型</h3><blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME 类型 - HTTP | MDN (mozilla.org)</a></p>
 </blockquote>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">localStorage</span>: <span class="built_in">object</span> = <span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="keyword">const</span> sessionStorage: <span class="built_in">object</span> = <span class="built_in">window</span>.sessionStorage;</span><br><span class="line"></span><br><span class="line"><span class="comment">// localStorage 与 sessionStorage 操作相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// get key name by index</span></span><br><span class="line"><span class="built_in">localStorage</span>.key(index: <span class="built_in">number</span>): <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// get key value by key name</span></span><br><span class="line"><span class="built_in">localStorage</span>.getItem(key: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// set key-value pair</span></span><br><span class="line"><span class="built_in">localStorage</span>.setItem(key: <span class="built_in">string</span>, <span class="attr">value</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//delete key-value</span></span><br><span class="line"><span class="built_in">localStorage</span>.removeItem(key: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// clear</span></span><br><span class="line"><span class="built_in">localStorage</span>.clear(): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// use JSON</span></span><br><span class="line">value = <span class="built_in">JSON</span>.stringfy(obj: <span class="built_in">object</span>);</span><br><span class="line">obj = <span class="built_in">JSON</span>.parse(str: <span class="built_in">string</span>);</span><br></pre></td></tr></table></figure>
+<p>媒体类型，是一个指定文档、文件或字节流类型的名称标准。常见的有</p>
+<ul>
+<li>text/plain</li>
+<li>text/css</li>
+<li>text/javascript</li>
+<li>text/html</li>
+<li>image/jpeg</li>
+<li>application/octet-stream</li>
+<li>multipart/form-data</li>
+<li>…</li>
+</ul>
+<p>其中，有的类型浏览器会按照文本读取，比如 <code>html</code> <code>css</code> <code>javascript</code>，而 <code>application/octet-stream</code> 类型浏览器会直接执行下载</p>
+<p>附一个来自互联网号码分配机构（<a href="https://www.iana.org/">IANA</a>）的媒体类型表 <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types (iana.org)</a></p>
+<h2 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h2><p><code>FileReader</code> 有一定的局限性，最近就遇到了这个问题，当文件小的时候还好说，但是如果文件大到一定体积，我这里尝试了 5M 左右，就会导致点击之后没有响应。</p>
+<p>通过 debugger，可以看见浏览器中确实添加了一个巨大的标签，但是执行下载之后没有反应。</p>
+<p>所以最后找到了一个对于 <code>blob</code> 的通用方法，base64 也可以先转码再使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">base64</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 传进来的是一个 base64 编码的字符串</span></span><br><span class="line">    <span class="comment">// 转成二进制</span></span><br><span class="line">    <span class="keyword">const</span> byteString = atob(base64);</span><br><span class="line">    <span class="keyword">const</span> u8Arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(byteString.split(<span class="string">&#x27;&#x27;</span>).map(<span class="function"><span class="params">x</span> =&gt;</span> x.charCodeAt(<span class="number">0</span>)));</span><br><span class="line">    <span class="comment">// 生成二进制对象</span></span><br><span class="line">    <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([u8Arr]);</span><br><span class="line">    <span class="comment">// 传入二进制对象 返回一个地址</span></span><br><span class="line">    <span class="keyword">const</span> objectUrl = URL.createObjectURL(blob);</span><br><span class="line">    <span class="comment">// href 参数直接指向下载地址</span></span><br><span class="line"> 	<span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    a.download = objectUrl;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">    a.click();</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">    URL.revokeObjectURL(objectUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage">Window.localStorage - Web API 接口参考 | MDN (mozilla.org)</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage">Window.sessionStorage - Web API 接口参考 | MDN (mozilla.org)</a></p>
+<p>通过查看浏览器，可以看到这个操作实际上是给这个二进制文件生成了一个临时的地址用来下载，所以挂载到这个页面上的体积其实很小，文件本体位于另一个页面。最后的下载就相当于下载了另一个 url 上的文件</p>
+<p>创建完需要手动 <code>URL.revokeObjectURL()</code> 销毁，否则需要等到 dom 卸载才会销毁。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -347,6 +355,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
               <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
           </div>
 
@@ -354,14 +363,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/20210511/nvm-node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" rel="prev" title="nvm-node版本管理器">
-                  <i class="fa fa-chevron-left"></i> nvm-node版本管理器
+                <a href="/20211102/element-ui%E9%80%89%E9%A1%B9%E6%94%B9%E5%8F%98%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8Evue%E7%9A%84%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="prev" title="element-ui选项改变后不立即更新的问题与vue的双向数据绑定">
+                  <i class="fa fa-chevron-left"></i> element-ui选项改变后不立即更新的问题与vue的双向数据绑定
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/20210514/ESLint%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="next" title="ESLint安装与配置">
-                  ESLint安装与配置 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

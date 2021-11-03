@@ -190,7 +190,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -249,6 +249,103 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210901/this-%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20210901/this-%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91/" class="post-title-link" itemprop="url">this 指针指向</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-01 14:42:07" itemprop="dateCreated datePublished" datetime="2021-09-01T14:42:07+08:00">2021-09-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一般的指向"><a href="#一般的指向" class="headerlink" title="一般的指向"></a>一般的指向</h2><p>概括地说，就是指向调用它的那个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  f: f,</span><br><span class="line">  x: <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单独执行</span></span><br><span class="line">f() <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// obj 环境执行</span></span><br><span class="line">obj.f() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>f()</code> 是在全局执行，所以返回全局的 <code>x</code>；<code>obj.f()</code> 在 <code>obj</code> 内部执行，所以返回 <code>obj.x</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  p: <span class="string">&#x27;Hello&#x27;</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    m: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.p);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">a.b.m() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p><code>m()</code> 由 <code>b</code> 调用，所以返回 <code>b.p  undefined</code></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20210901/this-%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210826/Vuex/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -280,7 +377,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -380,7 +477,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -505,7 +602,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -603,7 +700,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -694,7 +791,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -786,7 +883,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -884,7 +981,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -976,7 +1073,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1069,7 +1166,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
+        <time title="修改时间：2021-11-03 15:04:49" itemprop="dateModified" datetime="2021-11-03T15:04:49+08:00">2021-11-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1101,100 +1198,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20210512/%E6%B5%8F%E8%A7%88%E5%99%A8Storage%E5%AD%98%E5%82%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210511/nvm-node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210511/nvm-node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">nvm-node版本管理器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-11 13:32:35" itemprop="dateCreated datePublished" datetime="2021-05-11T13:32:35+08:00">2021-05-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-03 14:55:24" itemprop="dateModified" datetime="2021-11-03T14:55:24+08:00">2021-11-03</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>因为某项目要求11-的node版本，然而另一个项目有要求12+的版本，于是就发现了nvm(Node Version Manager)</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://github.com/coreybutler/nvm-windows/releases">Releases · coreybutler/nvm-windows (github.com)</a></p>
-<p>可以选择下载免安装版本(zip)，或者安装版本(exe)，我用的是exe版本。</p>
-<p>安装略，中途会提示是否接管已安装版本，可以选是。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210511/nvm-node%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
