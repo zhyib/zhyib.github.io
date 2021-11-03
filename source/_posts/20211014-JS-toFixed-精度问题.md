@@ -7,7 +7,6 @@ categories:
 tags:
 - JavaScript
 ---
-# JS toFixed 精度问题
 
 需求是遇到一个需要保留两位小数，但是出现了预期之外的结果
 
