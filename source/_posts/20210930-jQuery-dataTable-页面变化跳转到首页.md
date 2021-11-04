@@ -5,7 +5,9 @@ categories:
 - 技术
 - 前端
 tags:
+- 前端
 - JavaScript
+- bootstrap
 ---
 由于最近的业务原因，又开始使用 jQuery，jQuery 的组件虽然丰富，但是感觉不太协调，各管各的，配置起来也比较麻烦，这里先说个遇到的问题
 

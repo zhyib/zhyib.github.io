@@ -3,7 +3,7 @@ title: JS toFixed 精度问题
 date: 2021-10-14 13:22:24
 categories:
 - 技术
-- 前端
+- JavaScript
 tags:
 - JavaScript
 ---

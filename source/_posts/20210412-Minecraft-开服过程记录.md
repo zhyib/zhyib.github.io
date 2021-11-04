@@ -3,7 +3,7 @@ title: Minecraft 开服过程记录
 date: 2021-04-12 18:47:06
 categories:
 - 技术
-- 摸鱼技术
+- 杂谈
 tags:
 - 杂谈
 ---

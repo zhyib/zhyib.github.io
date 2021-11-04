@@ -7,6 +7,7 @@ categories:
 tags:
 - JavaScript
 - 前端
+- 网络
 ---
 
 简单地了解了一下WebSocket，做一下总结

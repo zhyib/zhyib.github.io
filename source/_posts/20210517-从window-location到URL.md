@@ -6,7 +6,7 @@ categories:
 - 前端
 tags:
 - 前端
-- 网络协议
+- 网络
 ---
 
 ## window.location
