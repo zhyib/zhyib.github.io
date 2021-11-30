@@ -190,7 +190,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -249,6 +249,113 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211129/%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211129/%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">行高line-height的用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-29 14:49:37" itemprop="dateCreated datePublished" datetime="2021-11-29T14:49:37+08:00">2021-11-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="设定"><a href="#设定" class="headerlink" title="设定"></a>设定</h2><p>字面意思，行高，是两行文字的基线之间的间距。可以看作为内容区的高度，和盒子的高度又有点<a href="#%E5%85%B3%E4%BA%8E%E7%9B%92%E5%AD%90%E9%AB%98%E5%BA%A6">区别</a></p>
+<p>假设行高 18px，字高 14px，那么剩下 4px 就会均分在字的上下 2px，同时这个与内间距 <code>padding</code> 又是两码事</p>
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><p>可选的值有 <code>&lt;number&gt; | &lt;length&gt; | &lt;percentage&gt; | normal</code></p>
+<h3 id="normal"><a href="#normal" class="headerlink" title="normal"></a>normal</h3><p>用户代理的默认值，与字体字号有关，通常会是字号的1.1-1.2倍高低，不同字号会有差异。例如</p>
+<ul>
+<li>宋体、仿宋、楷体 - 1.14</li>
+<li>微软雅黑 - 1.32</li>
+<li>Courier New - 1.13</li>
+<li>Consolas - 1.17</li>
+<li>Times - 1.15</li>
+<li>Arial - 1.15</li>
+</ul>
+<p>也可以用这个来恢复默认，清除继承</p>
+<h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><p>长度值，定值，写多少是多少。如 <code>40px, 1.5rem, 0.8em</code></p>
+<h3 id="number-percentage"><a href="#number-percentage" class="headerlink" title="number | percentage"></a>number | percentage</h3><p>直接的数字和百分比用来通过当前字号来计算行高</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">font-size: 100px;</span><br><span class="line">line-height: 0.9;</span><br><span class="line">&#x3D;&gt; 90px</span><br><span class="line"></span><br><span class="line">font-size: 100px;</span><br><span class="line">line-height: 1.5;</span><br><span class="line">&#x3D;&gt; 150px</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于盒子高度"><a href="#关于盒子高度" class="headerlink" title="关于盒子高度"></a>关于盒子高度</h2><p><img src="/20211129/%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E7%94%A8%E6%B3%95/image-20211129151845087.png" alt="image-20211129151845087"></p>
+<p>如图，三行每行 <code>line-height: 1; font-size: 100px;</code> 可得总高 <code>300px</code> </p>
+<p>接下来设定，三行所在 <code>div</code> 高度 <code>250px</code>，加背景色</p>
+<p>可以看到文字内容是比整个盒子要高的，甚至下个盒子紧挨着这个盒子，造成了文字重叠的现象</p>
+<p>所以结论是，<strong>用 <code>line-height</code> 时需要注意盒子的高度 <code>height</code></strong></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211104/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -272,10 +379,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-11-04 14:52:06 / 修改时间：15:46:05" itemprop="dateCreated datePublished" datetime="2021-11-04T14:52:06+08:00">2021-11-04</time>
+      <time title="创建时间：2021-11-04 14:52:06" itemprop="dateCreated datePublished" datetime="2021-11-04T14:52:06+08:00">2021-11-04</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -368,7 +481,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -460,7 +573,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -551,7 +664,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -642,7 +755,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -736,7 +849,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -831,7 +944,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -923,7 +1036,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1020,7 +1133,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-30 08:50:40" itemprop="dateModified" datetime="2021-11-30T08:50:40+08:00">2021-11-30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1051,100 +1164,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20210918/ajax%E4%BC%A0json/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210907/FormData-%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210907/FormData-%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">FormData 对象</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-07 15:54:24" itemprop="dateCreated datePublished" datetime="2021-09-07T15:54:24+08:00">2021-09-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 15:46:05" itemprop="dateModified" datetime="2021-11-04T15:46:05+08:00">2021-11-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="FormData-对象"><a href="#FormData-对象" class="headerlink" title="FormData 对象"></a>FormData 对象</h2><p><code>Formdata</code> 对象通常放在 <code>post</code> 请求的 <code>data</code> 位置，用来以表单形式提交数据，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: &quot;stash.php&quot;,</span><br><span class="line">  type: &quot;POST&quot;,</span><br><span class="line">  data: fd,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>了解了一下 <code>FormData</code> 对象的一些方法，做个记录</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210907/FormData-%E5%AF%B9%E8%B1%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
