@@ -36,7 +36,7 @@ jobs:
           publish_dir: ./public
           publish_branch: source  # deploying branch
 
-  sync:
+  gitee-sync:
     needs: pages
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +52,7 @@ jobs:
           destination-repo: "git@gitee.com:zhyib/zhyib.git"
   
   gitee-pages:
-    needs: sync
+    needs: gitee-sync
     runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
@@ -64,3 +64,18 @@ jobs:
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
           # 注意替换为你的 Gitee 仓库
           gitee-repo: zhyib/zhyib
+
+  ssh:
+    needs: pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
