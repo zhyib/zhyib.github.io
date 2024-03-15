@@ -20,17 +20,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="最近工作中遇到了 nginx 的代理相关问题，于是就了解了一下正向代理 &#x2F; 反向代理相关内容，简单记一下 概括在用户使用浏览器访问某网页的情景下 正向代理由客户端配置，对服务器透明，常用于魔法上网、加速等场景 反向代理由服务器配置，对客户端透明，常用于负载均衡、镜像站等场景">
+    <meta name="description" content="最近工作中遇到了 nginx 的代理相关问题，于是就了解了一下正向代理 &#x2F; 反向代理相关内容，简单记一下 概括在用户使用浏览器访问某网页的情景下 正向代理由客户端配置，对服务器透明，常用于游戏加速等场景 反向代理由服务器配置，对客户端透明，常用于负载均衡、镜像站等场景">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正向代理与反向代理">
 <meta property="og:url" content="https://zhyib.github.io/20211104/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="最近工作中遇到了 nginx 的代理相关问题，于是就了解了一下正向代理 &#x2F; 反向代理相关内容，简单记一下 概括在用户使用浏览器访问某网页的情景下 正向代理由客户端配置，对服务器透明，常用于魔法上网、加速等场景 反向代理由服务器配置，对客户端透明，常用于负载均衡、镜像站等场景">
+<meta property="og:description" content="最近工作中遇到了 nginx 的代理相关问题，于是就了解了一下正向代理 &#x2F; 反向代理相关内容，简单记一下 概括在用户使用浏览器访问某网页的情景下 正向代理由客户端配置，对服务器透明，常用于游戏加速等场景 反向代理由服务器配置，对客户端透明，常用于负载均衡、镜像站等场景">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhyib.github.io/20211104/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/image-20211104151339400.png">
 <meta property="og:image" content="https://zhyib.github.io/20211104/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/image-20211104151427567.png">
 <meta property="article:published_time" content="2021-11-04T06:52:06.000Z">
-<meta property="article:modified_time" content="2024-03-15T14:17:12.570Z">
+<meta property="article:modified_time" content="2024-03-15T14:51:29.169Z">
 <meta property="article:author" content="Y. Z.">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
@@ -212,7 +212,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-15 22:17:12" itemprop="dateModified" datetime="2024-03-15T22:17:12+08:00">2024-03-15</time>
+      <time title="修改时间：2024-03-15 22:51:29" itemprop="dateModified" datetime="2024-03-15T22:51:29+08:00">2024-03-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,16 +246,14 @@
     
     <div class="post-body" itemprop="articleBody"><p>最近工作中遇到了 nginx 的代理相关问题，于是就了解了一下正向代理 / 反向代理相关内容，简单记一下</p>
 <h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><p>在用户使用浏览器访问某网页的情景下</p>
-<p>正向代理由客户端配置，对服务器透明，常用于魔法上网、加速等场景</p>
+<p>正向代理由客户端配置，对服务器透明，常用于游戏加速等场景</p>
 <p>反向代理由服务器配置，对客户端透明，常用于负载均衡、镜像站等场景</p>
 <span id="more"></span>
 
-
-
-<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>最常见的场景已经说了，就是魔法上网，如果客户端 C 想访问服务器 S，但是由于某种原因——例如过高的延迟等——导致访问不正常，就可以采取这种方法。</p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>如果客户端 C 想访问服务器 S，但是由于某种原因——例如过高的延迟等——导致访问不正常，就可以采取这种方法。</p>
 <p>其过程为，以本地设置某软件代理给代理服务器 P 为例</p>
 <ul>
-<li>C 希望访问 S 上的资源，比如 <a href="http://www.google.com/">www.google.com</a></li>
+<li>C 希望访问 S 上的资源，比如 &lt;<a href="http://www.game.com&gt;/">www.game.com&gt;</a></li>
 <li>通过在本机的配置，不把请求直接给 S，而是把请求发送给了 P</li>
 <li>P 解析请求，并转发给 S</li>
 <li>S 返回给 P，此时 S 并不知道真正的发送者是 C，只是按照常规把数据返回给给发送者 P （对服务器透明）</li>
@@ -268,10 +266,10 @@
 <h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>nginx 就是一个流行的反向代理软件，常见于负载均衡的场景。客户端不需要任何配置，就可以通过反向代理访问服务器，也就是说，反向代理对于客户端而言是透明的。</p>
 <p>梳理一下客户端通过反向代理访问服务器的流程：</p>
 <ul>
-<li>客户端 C 希望访问服务器 S 上的资源，于是直接向 <a href="http://www.baidu.com/">www.baidu.com</a> 发送了请求</li>
-<li>C 以为他访问的 IP 是 <a href="http://www.baidu.com/">www.baidu.com</a> 的 IP，实际上这个 IP 配给了这个网站的反向代理服务器 P（对客户端透明）</li>
+<li>客户端 C 希望访问服务器 S 上的资源，于是直接向 &lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a> 发送了请求</li>
+<li>C 以为他访问的 IP 是 &lt;<a href="http://www.baidu.com&gt;/">www.baidu.com&gt;</a> 的 IP，实际上这个 IP 配给了这个网站的反向代理服务器 P（对客户端透明）</li>
 <li>P 收到了请求，后端可能配置了大量相同的服务器来应对高并发的情况，由他来决定这个请求该转发给哪个真正的服务器（负载均衡）</li>
-<li>服务器返回给P，P 返回给 S</li>
+<li>服务器返回给 P，P 返回给 S</li>
 </ul>
 <p>其作用除了负载均衡之外，还可以作为一道安全屏障。</p>
 <p><img src="/20211104/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/image-20211104151427567.png" alt="image-20211104151427567"></p>
@@ -316,6 +314,8 @@
   <footer class="footer">
     <div class="footer-inner">
 
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备2024073273号 </a>
+  </div>
   <div class="copyright">
     &copy; 2020 – 
     <span itemprop="copyrightYear">2024</span>
@@ -344,7 +344,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><div>
-  <a href="https://beian.miit.gov.cn/">浙ICP备2024073273号</a>
+  
 </div>
 
 
