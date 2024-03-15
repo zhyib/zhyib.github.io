@@ -1,7 +1,7 @@
 name: Deploy
 
 on:
-  push:
+  deployment:
     branches:
       - source # default branch
 
