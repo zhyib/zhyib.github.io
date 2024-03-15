@@ -70,6 +70,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show ls
+        run: ls
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         with:
