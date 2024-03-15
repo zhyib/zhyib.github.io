@@ -1,21 +1,40 @@
 name: Deploy
 
 on:
-  deployment:
+  push:
     branches:
-      - source # default branch
+      - master # default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "20.x"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Show ls
+        run: ls
+      - name: Install plugin
+        run: cp -rf plugins/hexo-filter-sequence/* node_modules/hexo-filter-sequence/
+      - name: Build
+        run: npm run build
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "."
+          SOURCE: "./public"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}

@@ -3,17 +3,17 @@ name: Pages
 on:
   push:
     branches:
-      - master  # default branch
+      - master # default branch
 
 jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "20.x"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -34,7 +34,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: source  # deploying branch
+          publish_branch: source # deploying branch
 
   gitee-sync:
     needs: pages
@@ -50,7 +50,7 @@ jobs:
           source-repo: "git@github.com:zhyib/zhyib.github.io.git"
           # 注意替换为你的 Gitee 目标仓库地址
           destination-repo: "git@gitee.com:zhyib/zhyib.git"
-  
+
   gitee-pages:
     needs: gitee-sync
     runs-on: ubuntu-latest
@@ -64,19 +64,3 @@ jobs:
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
           # 注意替换为你的 Gitee 仓库
           gitee-repo: zhyib/zhyib
-
-  ssh:
-    needs: pages
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Show ls
-        run: ls
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
