@@ -21,19 +21,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhyib.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="官方手册 https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;zh&#x2F;  核心概念 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  1234567891011121314151617import Vue from &#x27;vue&#x27;import Vuex from &#x27;vu">
+    <meta name="description" content="官方手册 https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;zh&#x2F;  核心概念 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  1234567891011121314151617import Vue from &quot;vue&quot;;import Vuex from &quot;v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vuex">
 <meta property="og:url" content="https://zhyib.github.io/20210826/Vuex/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="官方手册 https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;zh&#x2F;  核心概念 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  1234567891011121314151617import Vue from &#x27;vue&#x27;import Vuex from &#x27;vu">
+<meta property="og:description" content="官方手册 https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;zh&#x2F;  核心概念 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  1234567891011121314151617import Vue from &quot;vue&quot;;import Vuex from &quot;v">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-26T02:48:57.000Z">
-<meta property="article:modified_time" content="2024-04-02T07:53:12.307Z">
+<meta property="article:modified_time" content="2024-04-19T02:27:36.914Z">
 <meta property="article:author" content="Y. Z.">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Packages">
 <meta name="twitter:card" content="summary">
 
 
@@ -130,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,7 +142,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -212,7 +213,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +252,7 @@
 <h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><blockquote>
 <p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">mutations</span>: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.<span class="property">count</span>++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&quot;vuex&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">mutations</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      state.<span class="property">count</span>++;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>一个简单的示例</p>
 <span id="more"></span>
@@ -268,9 +269,7 @@
 <li><p>也可以直接访问 <code>this.$store.state.VAR_NAME</code></p>
 </li>
 <li><p>可以使用 <code>computed</code> 监听该属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Counter</span> = &#123;</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">count</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Counter</span> = &#123;</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;`</span>,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="title function_">count</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">count</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -300,9 +299,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mutations</span>: &#123;</span><br><span class="line">  increment (state, payload) &#123;</span><br><span class="line">    state.<span class="property">count</span> += payload.<span class="property">amount</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>调用，两种方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用 increment 方法</span></span><br><span class="line">store.<span class="title function_">commit</span>(<span class="string">&#x27;increment&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">amount</span>: <span class="number">10</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">store.<span class="title function_">commit</span>(&#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;increment&#x27;</span>,</span><br><span class="line">  <span class="attr">amount</span>: <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用 increment 方法</span></span><br><span class="line">store.<span class="title function_">commit</span>(<span class="string">&quot;increment&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">amount</span>: <span class="number">10</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">store.<span class="title function_">commit</span>(&#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&quot;increment&quot;</span>,</span><br><span class="line">  <span class="attr">amount</span>: <span class="number">10</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -324,8 +321,6 @@
 <li><p>由于返回的是 <code>Promise</code> 所以可以照常处理</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  actionB (&#123; dispatch, commit &#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">dispatch</span>(<span class="string">&#x27;actionA&#x27;</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">commit</span>(<span class="string">&#x27;someOtherMutation&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者使用 await</span></span><br><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="keyword">async</span> actionA (&#123; commit &#125;) &#123;</span><br><span class="line">    <span class="title function_">commit</span>(<span class="string">&#x27;gotData&#x27;</span>, <span class="keyword">await</span> <span class="title function_">getData</span>())</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">async</span> actionB (&#123; dispatch, commit &#125;) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">dispatch</span>(<span class="string">&#x27;actionA&#x27;</span>) <span class="comment">// 等待 actionA 完成</span></span><br><span class="line">    <span class="title function_">commit</span>(<span class="string">&#x27;gotOtherData&#x27;</span>, <span class="keyword">await</span> <span class="title function_">getOtherData</span>())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ul>
 <h3 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h3><ul>
@@ -339,9 +334,6 @@
 </li>
 </ul>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">└── store</span><br><span class="line">    ├── index.js          # 我们组装模块并导出 store 的地方</span><br><span class="line">    ├── actions.js        # 根级别的 action</span><br><span class="line">    ├── mutations.js      # 根级别的 mutation</span><br><span class="line">    └── modules</span><br><span class="line">        ├── cart.js       # 购物车模块</span><br><span class="line">        └── products.js   # 产品模块</span><br></pre></td></tr></table></figure>
-
-
-
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -354,6 +346,7 @@
               <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
               <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
               <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+              <a href="/tags/Packages/" rel="tag"><i class="fa fa-tag"></i> Packages</a>
           </div>
 
         

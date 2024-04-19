@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -161,6 +161,102 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20211014/Axios-%E5%8F%96%E6%B6%88%E5%8F%91%E9%80%81%E7%9A%84%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | AkiraZ's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/20211014/Axios-%E5%8F%96%E6%B6%88%E5%8F%91%E9%80%81%E7%9A%84%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">Axios 取消发送的请求</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-14 15:25:04" itemprop="dateCreated datePublished" datetime="2021-10-14T15:25:04+08:00">2021-10-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>功能，在发出上一个请求还没返回的时候，为了防止有连续多个请求返回，对上一个未返回的请求执行取消操作。</p>
+<p>底层是 <code>axios</code> 调用了 <code>XMLHttpRequest </code> 的 <code>abort()</code> 操作，取消上一条请求</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/abort">XMLHttpRequest.abort() - Web API 接口参考 | MDN (mozilla.org)</a></p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cancel = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">request</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 检查是否有 cancelToken，有就会执行</span></span><br><span class="line">    <span class="comment">// 背后的调用做过处理</span></span><br><span class="line">    <span class="comment">// 如果请求已经返回或者已经被取消就不会执行</span></span><br><span class="line">    <span class="keyword">if</span> (cancel) &#123;</span><br><span class="line">        <span class="title function_">cancel</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">axios</span>(&#123;</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;...&#x27;</span>,</span><br><span class="line">        <span class="comment">// 请求时配置，将 cancelToken 保存至一个全局变量，之后使用</span></span><br><span class="line">        <span class="attr">cancelToken</span>: <span class="keyword">new</span> <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title class_">CancelToken</span>(<span class="function"><span class="params">ct</span> =&gt;</span> &#123;</span><br><span class="line">            token = ct;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">        .<span class="title function_">then</span>(...)</span><br><span class="line">        .<span class="title function_">catch</span>(...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比较容易理解</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -206,7 +302,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -305,7 +401,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -405,7 +501,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -502,7 +598,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -604,7 +700,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -701,7 +797,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -800,7 +896,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -936,7 +1032,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1038,7 +1134,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
+      <time title="修改时间：2024-04-19 10:27:36" itemprop="dateModified" datetime="2024-04-19T10:27:36+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1071,142 +1167,12 @@
 <h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><blockquote>
 <p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">mutations</span>: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.<span class="property">count</span>++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&quot;vuex&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">mutations</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      state.<span class="property">count</span>++;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>一个简单的示例</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20210826/Vuex/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | AkiraZ's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" class="post-title-link" itemprop="url">Json 和 表单提交</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-24 14:37:08" itemprop="dateCreated datePublished" datetime="2021-08-24T14:37:08+08:00">2021-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-02 15:53:12" itemprop="dateModified" datetime="2024-04-02T15:53:12+08:00">2024-04-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>研究了一下关于post请求时候发送参数的两种方式，<strong>表单形式</strong>和<strong>JSON</strong>形式。</p>
-<p>两者最明显的区别还是在于</p>
-<ul>
-<li>传参的时候需要转换</li>
-<li>在控制台上呈现不同</li>
-</ul>
-<h2 id="两者不同与相同点"><a href="#两者不同与相同点" class="headerlink" title="两者不同与相同点"></a>两者不同与相同点</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>JSON</th>
-<th>表单（form data)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>请求头 Content-Type</td>
-<td>application/json</td>
-<td>application/x-www-form-urlencoded</td>
-</tr>
-<tr>
-<td>数据格式</td>
-<td>{“a”=1,”b”=2}</td>
-<td>a=1&amp;b=2</td>
-</tr>
-<tr>
-<td>预处理</td>
-<td>不需要</td>
-<td>Qs.stringify(object)</td>
-</tr>
-<tr>
-<td>位置</td>
-<td>请求体</td>
-<td>请求体</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20210824/Json-%E5%92%8C-%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
