@@ -27,6 +27,8 @@ jobs:
         run: ls
       - name: Install plugin
         run: cp -rf plugins/hexo-filter-sequence/* node_modules/hexo-filter-sequence/
+      - name: Install Theme
+        run: git clone https://github.com/theme-next/hexo-theme-next.git themes/next
       - name: Build
         run: npm run build
       - name: Deploy
