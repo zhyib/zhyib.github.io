@@ -8,8 +8,16 @@ subtitle: 愿键盘的余温传递到更遥远的将来
 description: ACG - A Coding Gamer
 keywords: keywords1, keywords2
 author: Y. Z.
-language: zh-CN
+language:
+  - zh-CN
+  - en
+i18n:
+  type: [page, post]
+  generator: [index, archive, category, tag]
+
 timezone: Asia/Shanghai
+cache:
+  enable: false
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
