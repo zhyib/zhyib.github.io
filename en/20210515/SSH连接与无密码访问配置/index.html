@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhyib.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介SSH(Secure Shell Protocol)，相比于 telnet, ftp等而言是一种安全加密的协议，后者通过明文传输数据，具有安全隐患。 SSH同时支持多种加密算法，目前常用的是RSA，具体加密算法由C-S双方协商决定。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH密钥连接与无密码访问配置">
+<meta property="og:url" content="https://zhyib.github.io/en/20210515/SSH%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%97%A0%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE%E9%85%8D%E7%BD%AE/">
+<meta property="og:site_name" content="AkiraZ&#39;s blog">
+<meta property="og:description" content="简介SSH(Secure Shell Protocol)，相比于 telnet, ftp等而言是一种安全加密的协议，后者通过明文传输数据，具有安全隐患。 SSH同时支持多种加密算法，目前常用的是RSA，具体加密算法由C-S双方协商决定。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-15T05:57:03.000Z">
+<meta property="article:modified_time" content="2024-05-04T14:30:32.329Z">
+<meta property="article:author" content="Y. Z.">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zhyib.github.io/en/20210515/SSH%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%97%A0%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>SSH密钥连接与无密码访问配置 | AkiraZ's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AkiraZ's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">愿键盘的余温传递到更遥远的将来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+<div style="text-align: center; margin-bottom: 20px">
+  <a href="/">中文</a>
+  <span>/</span>
+  <a href="/en">English</a>
+</div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20210515/SSH%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%97%A0%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SSH密钥连接与无密码访问配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-15 13:57:03" itemprop="dateCreated datePublished" datetime="2021-05-15T13:57:03+08:00">2021-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-05-04 22:30:32" itemprop="dateModified" datetime="2024-05-04T22:30:32+08:00">2024-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SSH(Secure Shell Protocol)，相比于 telnet, ftp等而言是一种安全加密的协议，后者通过明文传输数据，具有安全隐患。</p>
+<p>SSH同时支持多种加密算法，目前常用的是RSA，具体加密算法由C-S双方协商决定。</p>
+<span id="more"></span>
+
+<h2 id="SSH密钥连接建立过程"><a href="#SSH密钥连接建立过程" class="headerlink" title="SSH密钥连接建立过程"></a>SSH密钥连接建立过程</h2><p>加密的核心是非对称加密。首先明确一个概念，在非对称加密过程中，原文由公钥加密，再由私钥解密；而签名(signiture)，由私钥加密，公钥解密。</p>
+<p>加密的目的是保护数据安全，因为只有私钥能够做到解密；而签名的目的是保证数据发送者是私钥拥有者，除了他没有人能做出能用对应公钥解密的签名。</p>
+<h3 id="建立过程"><a href="#建立过程" class="headerlink" title="建立过程"></a>建立过程</h3><p>网络上众说纷纭，最后我还是去查了<a href="https://www.rfc-editor.org/rfc/rfc4252.html">RFC 4252</a>，现在做个总结。</p>
+<p>客户端发起连接请求，主要说的是使用<code>publickey</code>的方式建立连接，别的还有<code>password</code>这种。另一个是给出了使用的公钥加密方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">byte      SSH_MSG_USERAUTH_REQUEST</span><br><span class="line">string    user name in ISO-10646 UTF-8 encoding [RFC3629]</span><br><span class="line">string    service name in US-ASCII</span><br><span class="line">string    &quot;publickey&quot;</span><br><span class="line">boolean   FALSE</span><br><span class="line">string    public key algorithm name</span><br><span class="line">string    public key blob</span><br></pre></td></tr></table></figure>
+
+
+
+<p>服务器检查是否拥有公钥后返回，表示同意公钥加密方式，否则就要返回错误，没有公钥也需要拒绝。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">byte      SSH_MSG_USERAUTH_PK_OK</span><br><span class="line">string    public key algorithm name from the request</span><br><span class="line">string    public key blob from the request</span><br></pre></td></tr></table></figure>
+
+
+
+<p>客户端发送，原文附上签名，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">byte      SSH_MSG_USERAUTH_REQUEST</span><br><span class="line">string    user name</span><br><span class="line">string    service name</span><br><span class="line">string    &quot;publickey&quot;</span><br><span class="line">boolean   TRUE</span><br><span class="line">string    public key algorithm name</span><br><span class="line">string    public key to be used for authentication</span><br><span class="line">string    signature</span><br></pre></td></tr></table></figure>
+
+<p>签名的内容为，将以下内容使用私钥加密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string    session identifier</span><br><span class="line">byte      SSH_MSG_USERAUTH_REQUEST</span><br><span class="line">string    user name</span><br><span class="line">string    service name</span><br><span class="line">string    &quot;publickey&quot;</span><br><span class="line">boolean   TRUE</span><br><span class="line">string    public key algorithm name</span><br><span class="line">string    public key to be used for authentication</span><br></pre></td></tr></table></figure>
+
+
+
+<p>服务端收到后，将签名使用公钥解密，并与原文对比，确认消息的发送者为私钥的拥有者，返回<code>SSH_MSG_USERAUTH_SUCCESS </code>，连接建立</p>
+<h2 id="配置公私钥"><a href="#配置公私钥" class="headerlink" title="配置公私钥"></a>配置公私钥</h2><p>以GitHub与Linux服务器为例。</p>
+<ul>
+<li><p>首先在客户端<code>ssh-keygen</code></p>
+</li>
+<li><p>会要求输入文件名、密码等信息，文件名默认为<code>id_rsa</code></p>
+</li>
+<li><p>最后会在<code>~/.ssh/</code>中生成<code>id_rsa</code>与<code>id_rsa.pub</code>，前者为私钥后者公钥</p>
+</li>
+<li><p>登录服务端，存放公钥</p>
+<ul>
+<li><p>Github -&gt; Settings -&gt; <a href="https://github.com/settings/keys">SSH and GPG keys</a></p>
+</li>
+<li><p>New SSH key，输入名称和公钥内容</p>
+</li>
+<li><p>使用<code>ssh -T git@github.com</code>测试连通性【必须】</p>
+</li>
+<li><p>登录Linux服务器</p>
+</li>
+<li><p>进入<code>~/.ssh/</code></p>
+</li>
+<li><p>在<code>authorized_keys</code>中写入公钥，占一行，多个公钥各占一行</p>
+</li>
+<li><p>使用<code>ssh USER_NAME@IP</code>连接</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多密钥环境配置"><a href="#多密钥环境配置" class="headerlink" title="多密钥环境配置"></a>多密钥环境配置</h3><p>在<code>~/.ssh/config</code>中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host example                       # 关键词</span><br><span class="line">    HostName ip                    # 主机地址 ip或者主机名</span><br><span class="line">    User root                      # 用户名</span><br><span class="line">    # IdentityFile ~/.ssh/id_rsa   # 认证文件 私钥地址</span><br><span class="line">    # Port 22                      # 指定端口</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20210514/ESLint%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="prev" title="ESLint安装与配置">
+      <i class="fa fa-chevron-left"></i> ESLint安装与配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/20210517/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%AC%E4%B8%89%E6%96%B9%E8%8E%B7%E5%8F%96%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B/" rel="next" title="微信公众号小程序第三方获取授权流程">
+      微信公众号小程序第三方获取授权流程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">SSH密钥连接建立过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">建立过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%AC%E7%A7%81%E9%92%A5"><span class="nav-number">3.</span> <span class="nav-text">配置公私钥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AF%86%E9%92%A5%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">多密钥环境配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Y. Z.</p>
+  <div class="site-description" itemprop="description">ACG - A Coding Gamer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhyib" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhyib" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="zh-CN" data-href="/20210515/SSH%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%97%A0%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE%E9%85%8D%E7%BD%AE/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/20210515/SSH%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%97%A0%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE%E9%85%8D%E7%BD%AE/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备2024073273号 </a>
+      <img src="/images/beian.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010202004774" rel="noopener" target="_blank">浙公网安备33010202004774号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Y. Z.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
