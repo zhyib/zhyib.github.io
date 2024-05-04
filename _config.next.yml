@@ -14,7 +14,7 @@ reminder: true
 
 # Allow to cache content generation. Introduced in NexT v6.0.0.
 cache:
-  enable: true
+  enable: false
 
 # Remove unnecessary files after hexo generate.
 minify: true
@@ -22,12 +22,12 @@ minify: true
 # Define custom file paths.
 # Create your custom files in site directory `source/_data` and uncomment needed files below.
 custom_file_path:
-  head: source/_data/head.njk
-  header: source/_data/header.njk
-  sidebar: source/_data/sidebar.njk
+  #head: source/_data/head.swig
+  header: source/_data/header.swig
+  # sidebar: source/_data/sidebar.swig
   #postMeta: source/_data/post-meta.swig
   #postBodyEnd: source/_data/post-body-end.swig
-  footer: source/_data/footer.njk
+  #footer: source/_data/footer.njk
   #bodyEnd: source/_data/body-end.swig
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
