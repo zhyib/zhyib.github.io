@@ -173,6 +173,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250408/Vite-%E6%89%93%E5%8C%85%E5%85%BC%E5%AE%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/20250408/Vite-%E6%89%93%E5%8C%85%E5%85%BC%E5%AE%B9%E6%80%A7/" class="post-title-link" itemprop="url">Vite 打包兼容性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-04-08 13:52:07 / 修改时间：14:52:06" itemprop="dateCreated datePublished" datetime="2025-04-08T13:52:07+08:00">2025-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Vite 默认打包结果比较现代，有一定概率产生 js 的语法兼容性问题。Vite 默认在<code>build.target</code>中处理结果的目标版本。但是经观察似乎只会处理用户代码，并不会处理依赖中的不兼容问题，所以需要额外配置来做转换。这里的解决方案是使用<code>@vite/plugin-legacy</code>插件。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="string">&quot;@vitejs/plugin-legacy@4&quot;</span> -D</span><br></pre></td></tr></table></figure>
+
+<p>依赖大版本需要与<code>vite</code>大版本保持一致，本文假定<code>vite@^4</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20250408/Vite-%E6%89%93%E5%8C%85%E5%85%BC%E5%AE%B9%E6%80%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250402/php-fpm-%E5%AE%89%E8%A3%85%E5%92%8C%E9%94%99%E8%AF%AF%E6%8E%92%E6%9F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,10 +278,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-04-02 10:42:18 / 修改时间：13:41:34" itemprop="dateCreated datePublished" datetime="2025-04-02T10:42:18+08:00">2025-04-02</time>
+              <time title="创建时间：2025-04-02 10:42:18" itemprop="dateCreated datePublished" datetime="2025-04-02T10:42:18+08:00">2025-04-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -283,7 +371,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -371,7 +459,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -454,7 +542,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -540,7 +628,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -628,7 +716,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -714,7 +802,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -810,7 +898,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -896,7 +984,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
+                <time title="修改时间：2025-04-08 14:52:06" itemprop="dateModified" datetime="2025-04-08T14:52:06+08:00">2025-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -928,101 +1016,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20221213/%E4%BD%8E%E7%89%88%E6%9C%AC%E6%B5%8F%E8%A7%88%E5%99%A8finally%E5%85%BC%E5%AE%B9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20220527/typescript-%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/20220527/typescript-%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">typescript 项目配置总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-27 17:04:11" itemprop="dateCreated datePublished" datetime="2022-05-27T17:04:11+08:00">2022-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 13:41:34" itemprop="dateModified" datetime="2025-04-02T13:41:34+08:00">2025-04-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近在写一个服务端应用，计划采用的技术栈是 TypeScript + Koa2 + MySQL，后续计划再安排上持续集成之类的。先写一下项目用到 TS 需要的配置内容，主要是路径别名部分</p>
-<h2 id="初始化与编译输出"><a href="#初始化与编译输出" class="headerlink" title="初始化与编译输出"></a>初始化与编译输出</h2><ul>
-<li>安装 <code>tsc</code></li>
-<li><code>tsc --init</code> 初始化 ts 配置项</li>
-<li>在<strong>根目录</strong>使用 <code>tsc</code> 编译<strong>整个项目</strong>，</li>
-<li>低级错误：<ul>
-<li>如果使用 <code>tsc index.ts</code> 编译，只能编译单个文件和它的依赖文件，不是标准 npm module，所以在使用 <code>import / export</code> 时会出错</li>
-<li>同时也不会使用目录下的 <code>tsconfig.js</code> 文件读取编译配置项</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20220527/typescript-%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1111,7 +1104,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
