@@ -1,5 +1,5 @@
 <div style="text-align: center; margin-bottom: 20px">
-  <a href="/">中文</a>
+  <a href="/">Blog</a>
   <span>/</span>
-  <a href="/en">English</a>
+  <a href="/libraby/index.php">Game Library</a>
 </div>
