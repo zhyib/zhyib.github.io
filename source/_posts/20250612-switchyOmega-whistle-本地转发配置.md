@@ -21,6 +21,8 @@ tags:
 - SwitchyOmega 是一个浏览器插件，请使用通常安装插件的方式安装
 - whilstle `npm install whistle -g`，随后按照提示操作，通常它会把服务开在`127.0.0.1:8899`
 
+<!-- more -->
+
 ## 原理
 
 - 所有的浏览器流量，首先通过 SwitchyOmega 插件做全局转发到`127.0.0.1:8899`
