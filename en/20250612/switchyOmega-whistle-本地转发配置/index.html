@@ -32,7 +32,7 @@
 <meta property="og:description" content="由于在本地开发时需要获取测试环境的 Cookie，之前一般使用两种方法  把测试环境的 Cookie 修改到本地 调整 host 文件，把测试环境的域名指向127.0.0.1  两者都有点繁琐，而且后者依赖对 host 文件的权限，所以考虑换一套方案 安装 SwitchyOmega 和 whilstle SwitchyOmega 是一个浏览器插件，请使用通常安装插件的方式安装 whilstle n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-12T02:22:14.000Z">
-<meta property="article:modified_time" content="2025-06-12T03:25:14.130Z">
+<meta property="article:modified_time" content="2025-06-23T07:33:21.485Z">
 <meta property="article:author" content="Y. Z.">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="技术">
@@ -199,10 +199,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-06-12 10:22:14 / Modified: 11:25:14" itemprop="dateCreated datePublished" datetime="2025-06-12T10:22:14+08:00">2025-06-12</time>
+              <time title="Created: 2025-06-12 10:22:14" itemprop="dateCreated datePublished" datetime="2025-06-12T10:22:14+08:00">2025-06-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-06-23 15:33:21" itemprop="dateModified" datetime="2025-06-23T15:33:21+08:00">2025-06-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -262,13 +268,13 @@
 
 <ul>
 <li>第一行表示忽略所有的后端请求，不做处理</li>
-<li>第二行的地址代表测试环境的网页地址 <code>http://test.com:8080/web/#/</code> 浏览器访问这个地址时会下载 <code>index.html</code>入口文件，配置之后相当于连接到本地</li>
+<li>第二行的地址代表测试环境的网页地址 <code>http://test.com:8080/web/#/</code>， 浏览器访问这个地址时会下载 <code>index.html</code>入口文件，配置之后相当于连接到本地</li>
 <li>第三行表示将所有的剩余请求，也就是前端资源请求，包括.js .css .vue 以及图片和 node_modules 中的资源，都转发到本地开发环境</li>
 </ul>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>vite.config.js 文件中，<code>base</code>属性的值为<code>./</code>，表示所有的资源请求，包括前端资源请求，以及后端请求，都从根路径开始，即一三行</li>
-<li>vite.config.js 文件中，已配置了 <code>proxy</code> 属性转发到后端测试环境所以不需要做额外处理，即第一行</li>
-<li>vite.config.js 中，配置</li>
+<h3 id="vite-config-js-文件"><a href="#vite-config-js-文件" class="headerlink" title="vite.config.js 文件"></a><code>vite.config.js</code> 文件</h3><ul>
+<li><code>base</code>属性的值为<code>./</code>，表示所有的资源请求，包括前端资源请求，以及后端请求，都从根路径开始，即一三行</li>
+<li><code>已配置了 </code>proxy&#96; 属性转发到后端测试环境所以不需要做额外处理，即第一行</li>
+<li>增加配置</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">server</span>: &#123;</span><br><span class="line">    <span class="attr">host</span>: <span class="string">&quot;127.0.0.1&quot;</span>, <span class="comment">// 必须配置，不然 127.0.0.1:8080 不通</span></span><br><span class="line">    <span class="attr">port</span>: <span class="number">8080</span>,</span><br><span class="line">    <span class="attr">hmr</span>: &#123;</span><br><span class="line">      <span class="comment">// 避免 vite hmr 报错</span></span><br><span class="line">      <span class="attr">protocal</span>: <span class="string">&quot;ws&quot;</span>,</span><br><span class="line">      <span class="attr">host</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -294,7 +300,10 @@
     <a href="/20250408/Vite-%E6%89%93%E5%8C%85%E5%85%BC%E5%AE%B9%E6%80%A7/" rel="prev" title="Vite 打包兼容性">
       <i class="fa fa-chevron-left"></i> Vite 打包兼容性
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/" rel="next" title="Local Forwarding Configration of SwitchyOmgega and Whistle">
+      Local Forwarding Configration of SwitchyOmgega and Whistle <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -353,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-SwitchyOmega-%E5%92%8C-whilstle"><span class="nav-number">1.</span> <span class="nav-text">安装 SwitchyOmega 和 whilstle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">3.1.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-SwitchyOmega-%E5%92%8C-whilstle"><span class="nav-number">1.</span> <span class="nav-text">安装 SwitchyOmega 和 whilstle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vite-config-js-%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">vite.config.js 文件</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -367,20 +376,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
