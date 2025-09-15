@@ -21,7 +21,7 @@ However, the first way is combersome, and the second way requires the edit permi
 - SwitchyOmega is a browser extension, following the normal installation steps.
 - Whistle is a npm package, which can be installed by `npm install whistle -g`. It usually starts an servcie on `127.0.0.1:8899`.
 
-<!-- !more -->
+<!-- more -->
 
 ## Mechanism
 
