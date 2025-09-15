@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhyib.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="具体场景是在使用 Electron 开发的桌面端应用中，使用 Webview 内嵌其它项目网页，初始化网页时报错xxx.split() is undefined 导致白屏。根因是 Webpack 4 间接依赖 pbkdf2 包中有错误代码，导致在 Electron 的 Node 环境中不兼容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Electron Webview内嵌Webpack4项目不兼容">
+<meta property="og:url" content="https://zhyib.github.io/en/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/">
+<meta property="og:site_name" content="AkiraZ&#39;s blog">
+<meta property="og:description" content="具体场景是在使用 Electron 开发的桌面端应用中，使用 Webview 内嵌其它项目网页，初始化网页时报错xxx.split() is undefined 导致白屏。根因是 Webpack 4 间接依赖 pbkdf2 包中有错误代码，导致在 Electron 的 Node 环境中不兼容。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhyib.github.io/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/20250828221012_7375_74.png">
+<meta property="article:published_time" content="2025-09-15T03:02:22.000Z">
+<meta property="article:modified_time" content="2025-09-15T09:25:12.200Z">
+<meta property="article:author" content="Y. Z.">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="Electron">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhyib.github.io/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/20250828221012_7375_74.png">
+
+<link rel="canonical" href="https://zhyib.github.io/en/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Electron Webview内嵌Webpack4项目不兼容 | AkiraZ's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AkiraZ's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">愿键盘的余温传递到更遥远的将来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+<div style="text-align: center; margin-bottom: 20px">
+  <a href="/">Blog</a>
+  <span>/</span>
+  <a href="/library/index.php">Game Library</a>
+</div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Electron Webview内嵌Webpack4项目不兼容
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-09-15 11:02:22 / Modified: 17:25:12" itemprop="dateCreated datePublished" datetime="2025-09-15T11:02:22+08:00">2025-09-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>具体场景是在使用 Electron 开发的桌面端应用中，使用 Webview 内嵌其它项目网页，初始化网页时报错<code>xxx.split() is undefined</code> 导致白屏。根因是 Webpack 4 间接依赖 <code>pbkdf2</code> 包中有错误代码，导致在 Electron 的 Node 环境中不兼容。</p>
+<span id="more"></span>
+
+<h2 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h2><p>应用加载白屏报错 <code>xxx.split() is undefined</code>，排查根因发现这个报错来自底层依赖 <code>pbkdf2</code> 包。这个包由 <code>webpack@4</code> 引用，用于加解密功能。引用链路如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- webpack@4.47.0</span><br><span class="line">  `-- node-libs-browser@2.2.1</span><br><span class="line">    `-- crypto-browserify@3.12.1</span><br><span class="line">      +-- browserify-sign@4.2.3</span><br><span class="line">      | `-- parse-asn1@5.1.7</span><br><span class="line">      |   `-- pbkdf2@3.1.3 deduped</span><br><span class="line">      `-- pbkdf2@3.1.3</span><br></pre></td></tr></table></figure>
+
+<p>经过查询 Github 以及 Issues，早先有人已经提出了问题，并且提交了 Pull Request 但是没有人处理，疑似项目已经放弃维护。</p>
+<p>该项目在更新版本 3.1.2 时，修改代码引入了错误如下：<br><img src="/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/20250828221012_7375_74.png" alt="20250828221012_7375_74.png"></p>
+<p>原代码在第5行检查 <code>process.version</code> 是否存在，若存在则执行 <code>process.version.split()</code>。但是在这次commit中，第五行被修改为检查 <code>global.process.version</code> 存在，但是未修改 <code>process.version.split()</code> 方法。在 Electron 的 Node 环境中，恰好有 <code>global.process.version</code>，但是不存在 <code>process.version</code>，因此报错。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>最一劳永逸的方案是直接升级至 Webpack 5，因为 Webpack 5 不存在对这个包的依赖关系。但是通常来说，项目的打包工具不方便修改，因此采用的方案是发布并使用一个私有包，手动将这行的代码修改正确，即 <code>global.process.version.split()</code>。</p>
+<h2 id="关于-global"><a href="#关于-global" class="headerlink" title="关于 global"></a>关于 <code>global</code></h2><p><code>global</code> 是一个全局对象，在 Node 中，<code>global</code> 对象是 Node 的全局对象，它包含 Node 的全局变量。在浏览器中，全局变量是 <code>globalThis</code> <code>window</code> <code>self</code> <code>frames</code>，四者相等。</p>
+<blockquote>
+<p>在以前，从不同的 JavaScript 环境中获取全局对象需要不同的语句。在 Web 中，可以通过 <code>window</code>、<code>self</code> 或者 <code>frames</code> 取到全局对象，但是在 Web Workers 中，只有 <code>self</code> 可以。在 Node.js 中，它们都无法获取，必须使用 global。</p>
+<p><code>globalThis</code> 提供了一个标准的方式来获取不同环境下的全局 <code>this</code> 对象（也就是全局对象自身）。不像 <code>window</code> 或者 <code>self</code> 这些属性，它确保可以在有无窗口的各种环境下正常工作。所以，你可以安心的使用 <code>globalThis</code>，不必担心它的运行环境。为便于记忆，你只需要记住，全局作用域中的 this 就是 <code>globalThis</code>。</p>
+<p>Reference: <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis">globalThis</a></p>
+</blockquote>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
+              <a href="/tags/Electron/" rel="tag"><i class="fa fa-tag"></i> Electron</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/" rel="prev" title="Local Forwarding Configration of SwitchyOmgega and Whistle">
+      <i class="fa fa-chevron-left"></i> Local Forwarding Configration of SwitchyOmgega and Whistle
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">根本原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-global"><span class="nav-number">3.</span> <span class="nav-text">关于 global</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Y. Z.</p>
+  <div class="site-description" itemprop="description">ACG - A Coding Gamer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhyib" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhyib" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="zh-CN" data-href="/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备2024073273号 </a>
+      <img src="/images/beian.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010202004774" rel="noopener" target="_blank">浙公网安备33010202004774号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Y. Z.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
