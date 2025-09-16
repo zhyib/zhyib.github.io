@@ -1,25 +1,25 @@
 ---
-title: Local Forwarding Configration of SwitchyOmgega and Whistle
+title: Local Forwarding Configuration of SwitchyOmega and Whistle
 date: 2025-06-23 10:53:38
 categories:
-  - Techenology
+  - Technical
   - Frontend
 tags:
-  - Techenology
+  - Technical
   - Frontend
 ---
 
-Since we requrire cookies when doing web development locally, there are two ways to do this:
+Since we require cookies when doing web development locally, there are two ways to do this:
 
 - Copy & paste the cookies from the browser to the localhost
 - Edit `hosts` file, forwarding url of test environment to `127.0.0.1`
 
-However, the first way is combersome, and the second way requires the edit permission. Therefore, there is another solution.
+However, the first way is cumbersome, and the second way requires the edit permission. Therefore, there is another solution.
 
 ## Installation
 
 - SwitchyOmega is a browser extension, following the normal installation steps.
-- Whistle is a npm package, which can be installed by `npm install whistle -g`. It usually starts an servcie on `127.0.0.1:8899`.
+- Whistle is a npm package, which can be installed by `npm install whistle -g`. It usually starts an service on `127.0.0.1:8899`.
 
 <!-- more -->
 
@@ -59,7 +59,7 @@ defineConfig({
     port: 8080,
     hmr: {
       // 避免 vite hmr 报错
-      protocal: "ws",
+      protocol: "ws",
       host: "127.0.0.1",
     },
     // ...
