@@ -24,21 +24,24 @@
     var CONFIG = {"hostname":"zhyib.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Since we requrire cookies when doing web development locally, there are two ways to do this:  Copy &amp; paste the cookies from the browser to the localhost Edit hosts file, forwarding url of test env">
+  <meta name="description" content="When showing a webpack4-packaged project in Electron’s webview, an error xxx.split() is undefined occurs, causing the webview to display a blank page. The root cause is that the pbkdf2 package which i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Local Forwarding Configration of SwitchyOmgega and Whistle">
-<meta property="og:url" content="https://zhyib.github.io/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/">
+<meta property="og:title" content="The Incompatibility of Webpack4 in Electron&#39;s webview">
+<meta property="og:url" content="https://zhyib.github.io/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/">
 <meta property="og:site_name" content="AkiraZ&#39;s blog">
-<meta property="og:description" content="Since we requrire cookies when doing web development locally, there are two ways to do this:  Copy &amp; paste the cookies from the browser to the localhost Edit hosts file, forwarding url of test env">
+<meta property="og:description" content="When showing a webpack4-packaged project in Electron’s webview, an error xxx.split() is undefined occurs, causing the webview to display a blank page. The root cause is that the pbkdf2 package which i">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-06-23T02:53:38.000Z">
-<meta property="article:modified_time" content="2025-09-15T09:25:12.200Z">
+<meta property="og:image" content="https://zhyib.github.io/20250828221012_7375_74.png">
+<meta property="article:published_time" content="2025-09-16T02:06:57.000Z">
+<meta property="article:modified_time" content="2025-09-16T02:47:04.840Z">
 <meta property="article:author" content="Y. Z.">
-<meta property="article:tag" content="Techenology">
+<meta property="article:tag" content="Technical">
 <meta property="article:tag" content="Frontend">
+<meta property="article:tag" content="Electron">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhyib.github.io/20250828221012_7375_74.png">
 
-<link rel="canonical" href="https://zhyib.github.io/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/">
+<link rel="canonical" href="https://zhyib.github.io/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/">
 
 
 <script id="page-configurations">
@@ -51,7 +54,7 @@
   };
 </script>
 
-  <title>Local Forwarding Configration of SwitchyOmgega and Whistle | AkiraZ's blog</title>
+  <title>The Incompatibility of Webpack4 in Electron's webview | AkiraZ's blog</title>
   
 
 
@@ -177,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -190,7 +193,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Local Forwarding Configration of SwitchyOmgega and Whistle
+          The Incompatibility of Webpack4 in Electron's webview
         </h1>
 
         <div class="post-meta">
@@ -199,27 +202,21 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2025-06-23 10:53:38" itemprop="dateCreated datePublished" datetime="2025-06-23T10:53:38+08:00">2025-06-23</time>
+              <time title="创建时间：2025-09-16 10:06:57 / 修改时间：10:47:04" itemprop="dateCreated datePublished" datetime="2025-09-16T10:06:57+08:00">2025-09-16</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Techenology/" itemprop="url" rel="index"><span itemprop="name">Techenology</span></a>
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Techenology/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
+                  <a href="/categories/Technical/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
                 </span>
             </span>
 
@@ -241,45 +238,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Since we requrire cookies when doing web development locally, there are two ways to do this:</p>
-<ul>
-<li>Copy &amp; paste the cookies from the browser to the localhost</li>
-<li>Edit <code>hosts</code> file, forwarding url of test environment to <code>127.0.0.1</code></li>
-</ul>
-<p>However, the first way is combersome, and the second way requires the edit permission. Therefore, there is another solution.</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ul>
-<li>SwitchyOmega is a browser extension, following the normal installation steps.</li>
-<li>Whistle is a npm package, which can be installed by <code>npm install whistle -g</code>. It usually starts an servcie on <code>127.0.0.1:8899</code>.</li>
-</ul>
+        <p>When showing a webpack4-packaged project in Electron’s webview, an error <code>xxx.split() is undefined</code> occurs, causing the webview to display a blank page. The root cause is that the <code>pbkdf2</code> package which is depended by webpack has an error code that is not compatible with Electron’s Node environment.</p>
+<h2 id="Root-Cause"><a href="#Root-Cause" class="headerlink" title="Root Cause"></a>Root Cause</h2><p>Electron application throws an error <code>xxx.split() is undefined</code> when loading a webpack4-packaged project in Electron’s webview. It is because <code>webpack@4</code> is dependent on <code>pbkdf2</code> package which is used for encryption and decryption. It referred like below:</p>
 <span id="more"></span>
 
-<h2 id="Mechanism"><a href="#Mechanism" class="headerlink" title="Mechanism"></a>Mechanism</h2><ul>
-<li>All browser traffic first goes through SwitchyOmega, which forwards to <code>127.0.0.1:8899</code></li>
-<li>Configure rules on Whistle, forwarding the urls to the local development environment, all other requests which are not included will be ignored.</li>
-</ul>
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><ul>
-<li>SwitchyOmega<ul>
-<li>New Mode: Set proxy server as <code>127.0.0.1:8899</code></li>
-</ul>
-</li>
-<li>Whistle<ul>
-<li>Add rules as follows</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://test.com:8080/api ignore://http</span><br><span class="line">http://test.com:8080/web http://localhost:8080/</span><br><span class="line">http://test.com:8080/ http://localhost:8080/</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- webpack@4.47.0</span><br><span class="line">  `-- node-libs-browser@2.2.1</span><br><span class="line">    `-- crypto-browserify@3.12.1</span><br><span class="line">      +-- browserify-sign@4.2.3</span><br><span class="line">      | `-- parse-asn1@5.1.7</span><br><span class="line">      |   `-- pbkdf2@3.1.3 deduped</span><br><span class="line">      `-- pbkdf2@3.1.3</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>1st line: All backend requests will be ignored.</li>
-<li>2nd line: Refer to <code>http://test.com:8080/web/#/</code>, on which The browser will download the <code>index.html</code> entry file. This means that these requests will be forwarded to the local development environment.</li>
-<li>3rd line: All remaining requests, which may be frontend resources requests, including .js .css .vue images and node_modules files, will be forwarded to the local development environment.</li>
-</ul>
-<h3 id="File-vite-config-js"><a href="#File-vite-config-js" class="headerlink" title="File vite.config.js"></a>File <code>vite.config.js</code></h3><ul>
-<li>The <code>base</code> key should be set as <code>./</code>, which means all requests, including frontend resources requests and backend requests, will be started from the root path.</li>
-<li>The <code>proxy</code> key should be set already. All requests should be forwarded to the backend test environment, so no additional processing is required.</li>
-<li>Add the following code to <code>vite.config.js</code>, if not exists:</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">server</span>: &#123;</span><br><span class="line">    <span class="attr">host</span>: <span class="string">&quot;127.0.0.1&quot;</span>, <span class="comment">// 必须配置，不然 127.0.0.1:8080 不通</span></span><br><span class="line">    <span class="attr">port</span>: <span class="number">8080</span>,</span><br><span class="line">    <span class="attr">hmr</span>: &#123;</span><br><span class="line">      <span class="comment">// 避免 vite hmr 报错</span></span><br><span class="line">      <span class="attr">protocal</span>: <span class="string">&quot;ws&quot;</span>,</span><br><span class="line">      <span class="attr">host</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>After searching Github and project’s issues, I found that someone has already posted the issue and even submitted a pull request, but it was never accepted, probably because the project is no longer maintained.</p>
+<p>When updating to version 3.1.2, the code changes caused an error like below:</p>
+<p><img src="/20250828221012_7375_74.png" alt="20250828221012_7375_74.png"></p>
+<p>The original code checks whether <code>process.version</code> exists, and if it does, it executes <code>process.version.split()</code>. However, in the commit for version 3.1.2, the check was changed to <code>global.process.version</code>, but the <code>process.version.split()</code> method was not modified. In the Electron’s Node environment, there is a <code>global.process.version</code>, but no <code>process.version</code>. This causes the error.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>The most straightforward solution is to upgrade to Webpack5, because Webpack5 does not have this dependency. However, in most cases, the packaging tool is not like to be modified, so a solution is to publish a private package and manually edit to the correct code - <code>global.process.version.split()</code>.</p>
+<h2 id="About-global"><a href="#About-global" class="headerlink" title="About global"></a>About <code>global</code></h2><p><code>global</code> is a global object. In Node, <code>global</code> is the Node global object, which contains Node’s global variables. In browser environment, global variables are <code>globalThis</code> <code>window</code> <code>self</code> <code>frames</code> and four variables are equal.</p>
+<blockquote>
+<p>Historically, accessing the global object has required different syntax in different JavaScript environments. On the web you can use <code>window</code>, <code>self</code>, or <code>frames</code> - but in Web Workers only <code>self</code> will work. In Node.js none of these work, and you must instead use <code>global</code>.</p>
+<p>The <code>globalThis</code> property provides a standard way of accessing the global <code>this</code> value (and hence the global object itself) across environments. Unlike similar properties such as <code>window</code> and <code>self</code>, it’s guaranteed to work in window and non-window contexts. In this way, you can access the global object in a consistent manner without having to know which environment the code is being run in. To help you remember the name, just remember that in global scope the <code>this</code> value is <code>globalThis</code>.</p>
+<p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis">globalThis</a></p>
+</blockquote>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
@@ -290,8 +265,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Techenology/" rel="tag"><i class="fa fa-tag"></i> Techenology</a>
+              <a href="/tags/Technical/" rel="tag"><i class="fa fa-tag"></i> Technical</a>
               <a href="/tags/Frontend/" rel="tag"><i class="fa fa-tag"></i> Frontend</a>
+              <a href="/tags/Electron/" rel="tag"><i class="fa fa-tag"></i> Electron</a>
           </div>
 
         
@@ -300,13 +276,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/20250612/switchyOmega-whistle-%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%8F%91%E9%85%8D%E7%BD%AE/" rel="prev" title="SwitchyOmega whistle 本地转发配置">
-      <i class="fa fa-chevron-left"></i> SwitchyOmega whistle 本地转发配置
+    <a href="/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/" rel="prev" title="Electron Webview内嵌Webpack4项目不兼容">
+      <i class="fa fa-chevron-left"></i> Electron Webview内嵌Webpack4项目不兼容
     </a></div>
-      <div class="post-nav-item">
-    <a href="/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/" rel="next" title="Electron Webview内嵌Webpack4项目不兼容">
-      Electron Webview内嵌Webpack4项目不兼容 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -365,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mechanism"><span class="nav-number">2.</span> <span class="nav-text">Mechanism</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">3.</span> <span class="nav-text">Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File-vite-config-js"><span class="nav-number">3.1.</span> <span class="nav-text">File vite.config.js</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Root-Cause"><span class="nav-number">1.</span> <span class="nav-text">Root Cause</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-global"><span class="nav-number">3.</span> <span class="nav-text">About global</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -379,7 +352,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -429,11 +402,11 @@
     </label>
     <select class="lang-select" data-canonical="">
       
-        <option value="zh-CN" data-href="/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/" selected="">
+        <option value="zh-CN" data-href="/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/" selected="">
+        <option value="en" data-href="/en/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/" selected="">
           English
         </option>
       

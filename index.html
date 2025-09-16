@@ -173,6 +173,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Y. Z.">
+      <meta itemprop="description" content="ACG - A Coding Gamer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AkiraZ's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/" class="post-title-link" itemprop="url">The Incompatibility of Webpack4 in Electron's webview</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-16 10:06:57 / 修改时间：10:47:04" itemprop="dateCreated datePublished" datetime="2025-09-16T10:06:57+08:00">2025-09-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>When showing a webpack4-packaged project in Electron’s webview, an error <code>xxx.split() is undefined</code> occurs, causing the webview to display a blank page. The root cause is that the <code>pbkdf2</code> package which is depended by webpack has an error code that is not compatible with Electron’s Node environment.</p>
+<h2 id="Root-Cause"><a href="#Root-Cause" class="headerlink" title="Root Cause"></a>Root Cause</h2><p>Electron application throws an error <code>xxx.split() is undefined</code> when loading a webpack4-packaged project in Electron’s webview. It is because <code>webpack@4</code> is dependent on <code>pbkdf2</code> package which is used for encryption and decryption. It referred like below:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/20250916/The-Incompatibility-of-Webpack4-in-Electron-s-webview/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
     <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,10 +276,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-15 11:02:22 / 修改时间：17:25:12" itemprop="dateCreated datePublished" datetime="2025-09-15T11:02:22+08:00">2025-09-15</time>
+              <time title="创建时间：2025-09-15 11:02:22" itemprop="dateCreated datePublished" datetime="2025-09-15T11:02:22+08:00">2025-09-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -225,7 +311,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>具体场景是在使用 Electron 开发的桌面端应用中，使用 Webview 内嵌其它项目网页，初始化网页时报错<code>xxx.split() is undefined</code> 导致白屏。根因是 Webpack 4 间接依赖 <code>pbkdf2</code> 包中有错误代码，导致在 Electron 的 Node 环境中不兼容。</p>
+          <p>具体场景是在使用 Electron 开发的桌面端应用中，使用 Webview 内嵌其它项目网页，初始化网页时报错<code>xxx.split() is undefined</code> 导致白屏。根因是 Webpack4 间接依赖 <code>pbkdf2</code> 包中有错误代码，导致在 Electron 的 Node 环境中不兼容。</p>
+<h2 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h2><p>应用加载白屏报错 <code>xxx.split() is undefined</code>，排查根因发现这个报错来自底层依赖 <code>pbkdf2</code> 包。这个包由 <code>webpack@4</code> 引用，用于加解密功能。引用链路如下：</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20250915/Electron-Webview%E5%86%85%E5%B5%8CWebpack4%E9%A1%B9%E7%9B%AE%E4%B8%8D%E5%85%BC%E5%AE%B9/#more" rel="contents">
@@ -252,7 +339,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/">
+    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20250623/Local-Forwarding-Configration-of-SwitchyOmega-and-Whistle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -266,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/" class="post-title-link" itemprop="url">Local Forwarding Configration of SwitchyOmgega and Whistle</a>
+            <a href="/20250623/Local-Forwarding-Configration-of-SwitchyOmega-and-Whistle/" class="post-title-link" itemprop="url">Local Forwarding Configuration of SwitchyOmega and Whistle</a>
         </h2>
 
         <div class="post-meta">
@@ -283,7 +370,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -291,11 +378,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Techenology/" itemprop="url" rel="index"><span itemprop="name">Techenology</span></a>
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Techenology/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
+                  <a href="/categories/Technical/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
                 </span>
             </span>
 
@@ -310,19 +397,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Since we requrire cookies when doing web development locally, there are two ways to do this:</p>
+          <p>Since we require cookies when doing web development locally, there are two ways to do this:</p>
 <ul>
 <li>Copy &amp; paste the cookies from the browser to the localhost</li>
 <li>Edit <code>hosts</code> file, forwarding url of test environment to <code>127.0.0.1</code></li>
 </ul>
-<p>However, the first way is combersome, and the second way requires the edit permission. Therefore, there is another solution.</p>
+<p>However, the first way is cumbersome, and the second way requires the edit permission. Therefore, there is another solution.</p>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ul>
 <li>SwitchyOmega is a browser extension, following the normal installation steps.</li>
-<li>Whistle is a npm package, which can be installed by <code>npm install whistle -g</code>. It usually starts an servcie on <code>127.0.0.1:8899</code>.</li>
+<li>Whistle is a npm package, which can be installed by <code>npm install whistle -g</code>. It usually starts an service on <code>127.0.0.1:8899</code>.</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/20250623/Local-Forwarding-Configration-of-SwitchyOmgega-and-Whistle/#more" rel="contents">
+              <a class="btn" href="/20250623/Local-Forwarding-Configration-of-SwitchyOmega-and-Whistle/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -377,7 +464,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -471,7 +558,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -559,7 +646,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -644,7 +731,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -732,7 +819,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -815,7 +902,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -901,7 +988,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
+                <time title="修改时间：2025-09-16 10:47:04" itemprop="dateModified" datetime="2025-09-16T10:47:04+08:00">2025-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -935,92 +1022,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/20240419/CodeMirror-%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en">
-    <link itemprop="mainEntityOfPage" href="https://zhyib.github.io/20240402/iconify-%E5%9B%BE%E6%A0%87%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y. Z.">
-      <meta itemprop="description" content="ACG - A Coding Gamer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AkiraZ's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/20240402/iconify-%E5%9B%BE%E6%A0%87%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">iconify 图标库的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-02 14:40:13" itemprop="dateCreated datePublished" datetime="2024-04-02T14:40:13+08:00">2024-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-15 17:25:12" itemprop="dateModified" datetime="2025-09-15T17:25:12+08:00">2025-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>图标库地址 <a href="https://iconify.design/">https://iconify.design/</a>，集合了市面上众多知名图标库，如 FontAwesome, Material Design Icons, Ionicons 等。</p>
-<p>本质 SVG 图标，支持动态导入</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/20240402/iconify-%E5%9B%BE%E6%A0%87%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1109,7 +1110,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
